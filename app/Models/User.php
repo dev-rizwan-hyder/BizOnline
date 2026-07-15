@@ -21,7 +21,29 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'contact_info',
     ];
+
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isEmployee(): bool
+    {
+        return $this->role === 'employee';
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to');
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

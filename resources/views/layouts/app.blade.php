@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bizz Online - Complete Digital Solutions for Your Business Growth</title>
+    <title>Biz Tech Solution - Complete Digital Solutions for Your Business Growth</title>
     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,7 +284,7 @@
               <i class="ri-phone-line"></i>
               <span>Call</span>
             </a>
-            <a href="mailto:hello@bizzonline.com" class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-indigo-300/35 bg-[#12245d]/70 text-cyan-100 text-xs font-medium hover:text-white">
+            <a href="mailto:info@biztechsolutions.com" class="inline-flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-indigo-300/35 bg-[#12245d]/70 text-cyan-100 text-xs font-medium hover:text-white">
               <i class="ri-mail-line"></i>
               <span>Email</span>
             </a>
@@ -447,7 +447,7 @@
           const message = messageInput.value.trim();
           if (!message) return;
           const text = encodeURIComponent(`Support request from ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`);
-          window.location.href = `mailto:hello@bizzonline.com?subject=Chat Support Request&body=${text}`;
+          window.location.href = `mailto:info@biztechsolutions.com?subject=Chat Support Request&body=${text}`;
         });
       });
     </script>

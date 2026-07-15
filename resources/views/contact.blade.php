@@ -4,7 +4,7 @@
 @php
     $contactCards = [
         ['icon' => 'ri-phone-line', 'label' => 'Phone', 'value' => '+92 315 2457703', 'href' => 'tel:+923152457703', 'accent' => 'from-cyan-400 to-indigo-500'],
-        ['icon' => 'ri-mail-line', 'label' => 'Email', 'value' => 'hello@bizzonline.com', 'href' => 'mailto:hello@bizzonline.com', 'accent' => 'from-violet-400 to-fuchsia-500'],
+        ['icon' => 'ri-mail-line', 'label' => 'Email', 'value' => 'info@biztechsolutions.com', 'href' => 'mailto:info@biztechsolutions.com', 'accent' => 'from-violet-400 to-fuchsia-500'],
         ['icon' => 'ri-map-pin-line', 'label' => 'Location', 'value' => 'Karachi, Pakistan', 'href' => null, 'accent' => 'from-orange-400 to-pink-500'],
     ];
 

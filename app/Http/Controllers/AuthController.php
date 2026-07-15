@@ -10,8 +10,8 @@ class AuthController extends Controller
 {
     //
 
-    public function test(Request $request){
-        return view("login");
+    public function showLoginForm(Request $request){
+        return view("auth.login");
     }
 
     public function login(Request $request){
@@ -24,19 +24,27 @@ class AuthController extends Controller
         $credentials = $request->only("email","password");
         if(Auth::attempt($credentials)){
             $request->session()->regenerate(); 
-        return redirect()->intended('test')->with('success', 'Logged in successfully');
+            $role = Auth::user()->role;
+            if ($role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($role === 'employee') {
+                return redirect()->route('employee.dashboard');
+            }
+            return redirect('/');
         }else{
-            return 'wrong credentials ';
+            return back()->withErrors(['email' => 'Invalid credentials']);
         }
 
 
     }
 
-    public function logout(){
+    public function logout(Request $request){
 
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return auth()->user();
+        return redirect()->route('login');
     }
 
 }

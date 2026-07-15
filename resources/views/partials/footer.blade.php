@@ -19,7 +19,7 @@
                     <div class="flex flex-wrap items-center gap-3 text-xs text-blue-100/80">
                         <span
                             class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-300/30 bg-[#12235f]/70"><i
-                                class="ri-mail-line"></i>hello@bizzonline.com</span>
+                                class="ri-mail-line"></i>info@biztechsolutions.com</span>
                         <span
                             class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-300/30 bg-[#12235f]/70"><i
                                 class="ri-phone-line"></i>+1 (555) 123-4567</span>
