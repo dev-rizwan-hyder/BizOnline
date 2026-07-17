@@ -15,7 +15,26 @@ class TaskController extends Controller
         if ($task->assigned_to !== Auth::id()) {
             abort(403);
         }
+        $task->load(['comments.user']);
         return view('employee.tasks.show', compact('task'));
+    }
+
+    public function storeComment(Request $request, Task $task)
+    {
+        if ($task->assigned_to !== Auth::id()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'content' => 'required|string|max:5000',
+        ]);
+
+        $task->comments()->create([
+            'user_id' => Auth::id(),
+            'content' => $validated['content'],
+        ]);
+
+        return redirect()->back()->with('success', 'Comment posted successfully.');
     }
 
     public function updateStatus(Request $request, Task $task)

@@ -52,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('employees', \App\Http\Controllers\Admin\EmployeeController::class);
         Route::resource('tasks', \App\Http\Controllers\Admin\TaskController::class);
+        Route::post('tasks/{task}/comments', [\App\Http\Controllers\Admin\TaskController::class, 'storeComment'])->name('tasks.comments.store');
         Route::get('attendances/sheet', [\App\Http\Controllers\Admin\AttendanceController::class, 'sheet'])->name('attendances.sheet');
         Route::resource('attendances', \App\Http\Controllers\Admin\AttendanceController::class);
     });
@@ -60,8 +61,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('dashboard', [\App\Http\Controllers\Employee\DashboardController::class, 'index'])->name('dashboard');
         Route::get('tasks/{task}', [\App\Http\Controllers\Employee\TaskController::class, 'show'])->name('tasks.show');
         Route::patch('tasks/{task}/status', [\App\Http\Controllers\Employee\TaskController::class, 'updateStatus'])->name('tasks.status');
+        Route::post('tasks/{task}/comments', [\App\Http\Controllers\Employee\TaskController::class, 'storeComment'])->name('tasks.comments.store');
         
         // Attendance Routes
+        Route::get('attendance', [\App\Http\Controllers\Employee\AttendanceController::class, 'index'])->name('attendance');
         Route::post('attendance/check-in', [\App\Http\Controllers\Employee\AttendanceController::class, 'checkIn'])->name('attendance.check-in');
         Route::post('attendance/break-start', [\App\Http\Controllers\Employee\AttendanceController::class, 'startBreak'])->name('attendance.break-start');
         Route::post('attendance/break-end', [\App\Http\Controllers\Employee\AttendanceController::class, 'endBreak'])->name('attendance.break-end');

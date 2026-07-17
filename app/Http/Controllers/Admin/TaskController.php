@@ -50,7 +50,22 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
+        $task->load(['comments.user']);
         return view('admin.tasks.show', compact('task'));
+    }
+
+    public function storeComment(Request $request, Task $task)
+    {
+        $validated = $request->validate([
+            'content' => 'required|string|max:5000',
+        ]);
+
+        $task->comments()->create([
+            'user_id' => auth()->id(),
+            'content' => $validated['content'],
+        ]);
+
+        return redirect()->back()->with('success', 'Comment posted successfully.');
     }
 
     public function edit(Task $task)

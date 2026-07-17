@@ -10,6 +10,55 @@ use Carbon\Carbon;
 
 class AttendanceController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = Auth::user();
+        
+        $month = $request->input('month', Carbon::now()->format('Y-m'));
+        $startDate = Carbon::createFromFormat('Y-m', $month)->startOfMonth();
+        $endDate = $startDate->copy()->endOfMonth();
+        $daysInMonth = $startDate->daysInMonth;
+        
+        $attendances = Attendance::where('user_id', $user->id)
+            ->whereBetween('date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
+            ->get()
+            ->keyBy(function ($record) {
+                return Carbon::parse($record->date)->day;
+            });
+            
+        $totalPresent = 0;
+        $totalWorkSeconds = 0;
+        $totalBreakSeconds = 0;
+        
+        foreach ($attendances as $record) {
+            if (in_array($record->status, ['checked_in', 'checked_out', 'on_break'])) {
+                $totalPresent++;
+            }
+            $totalWorkSeconds += $record->working_duration;
+            $totalBreakSeconds += $record->break_duration;
+        }
+        
+        $formatHours = function ($seconds) {
+            $hours = floor($seconds / 3600);
+            $minutes = floor(($seconds / 60) % 60);
+            return "{$hours}h {$minutes}m";
+        };
+        
+        $stats = [
+            'present_days' => $totalPresent,
+            'working_time' => $formatHours($totalWorkSeconds),
+            'break_time' => $formatHours($totalBreakSeconds),
+        ];
+
+        return view('employee.attendance.index', compact(
+            'attendances',
+            'month',
+            'daysInMonth',
+            'startDate',
+            'stats'
+        ));
+    }
+
     public function checkIn()
     {
         $today = Carbon::today()->toDateString();
