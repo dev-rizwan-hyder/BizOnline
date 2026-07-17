@@ -27,7 +27,7 @@
                 </button>
             </div>
             
-            <form action="{{ route('admin.tasks.store') }}" method="POST" class="p-6">
+            <form action="{{ route('admin.tasks.store') }}" method="POST" class="p-6" hx-boost="false">
                 @csrf
                 <div class="space-y-5">
                     <div>
@@ -93,7 +93,7 @@
                 </button>
             </div>
             
-            <form :action="editUrl" method="POST" class="p-6">
+            <form :action="editUrl" method="POST" class="p-6" hx-boost="false">
                 @csrf
                 @method('PUT')
                 <div class="space-y-5">
@@ -244,7 +244,7 @@
                                     <a href="{{ route('admin.tasks.show', $task) }}" class="p-2 text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 rounded-lg transition-colors" title="View Details">
                                         <i class="ri-eye-line"></i>
                                     </a>
-                                    <button @click="editData = { title: '{{ addslashes($task->title) }}', description: '{{ addslashes($task->description) }}', assignee_id: '{{ $task->assigned_to }}', due_date: '{{ $task->due_date }}', priority: '{{ $task->priority }}', status: '{{ $task->status }}' }; editUrl = '{{ route('admin.tasks.update', $task) }}'; editModalOpen = true" class="p-2 text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 rounded-lg transition-colors" title="Edit">
+                                    <button @click="editData = { title: {{ json_encode($task->title) }}, description: {{ json_encode($task->description) }}, assignee_id: '{{ $task->assigned_to }}', due_date: '{{ $task->due_date }}', priority: '{{ $task->priority }}', status: '{{ $task->status }}' }; editUrl = '{{ route('admin.tasks.update', $task) }}'; editModalOpen = true" class="p-2 text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 rounded-lg transition-colors" title="Edit">
                                         <i class="ri-pencil-line"></i>
                                     </button>
                                     <form action="{{ route('admin.tasks.destroy', $task) }}" method="POST" class="inline-block" onsubmit="return confirm('Delete this task?');">
