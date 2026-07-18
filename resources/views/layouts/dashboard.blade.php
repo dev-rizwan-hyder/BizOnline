@@ -168,6 +168,22 @@
                         <i class="ri-time-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Attendance</span>
                     </a>
+
+                    <a href="{{ route('admin.blogs.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.blogs.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('admin.blogs.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-article-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Blogs</span>
+                    </a>
+
+                    <a href="{{ route('admin.services.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.services.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('admin.services.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-settings-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Services</span>
+                    </a>
                 </div>
             </div>
             @endif

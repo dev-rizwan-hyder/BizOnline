@@ -82,7 +82,8 @@
 
     $topLinks = [
         ['label' => 'Home', 'href' => url('/')],
-        ['label' => 'Work', 'href' => route('work')],
+        ['label' => 'About', 'href' => route('work')],
+        ['label' => 'Blog', 'href' => route('blogs.index')],
         ['label' => 'Contact', 'href' => route('contact.show')],
     ];
 @endphp

@@ -24,6 +24,30 @@ Route::middleware(['guest'])->group(function () {
         abort_unless(array_key_exists($service, $pages), 404);
 
         $page = $pages[$service];
+
+        // Load database overrides if exist
+        $dbService = \App\Models\Service::where('slug', $service)->first();
+        if ($dbService) {
+            if ($dbService->image) {
+                $page['image'] = 'services/' . $page['category'] . '/' . $dbService->image;
+            }
+            if ($dbService->title) {
+                $page['title'] = $dbService->title;
+            }
+            if ($dbService->headline) {
+                $page['headline'] = $dbService->headline;
+            }
+            if ($dbService->intro) {
+                $page['intro'] = $dbService->intro;
+            }
+            if ($dbService->packages) {
+                $page['packages'] = $dbService->packages;
+            }
+            if ($dbService->work) {
+                $page['work'] = $dbService->work;
+            }
+        }
+
         $categories = config('service_pages.categories');
         abort_unless(isset($categories[$page['category']]), 404);
 
@@ -42,7 +66,10 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/logo-design', fn () => $showServicePage('logo-design'))->name('logo.design');
     Route::get('/brand-identity', fn () => $showServicePage('brand-identity'))->name('brand.identity');
     Route::get('/services/{service}', $showServicePage)->name('services.show');
-
+    
+    // Public Blog Routes
+    Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
+    Route::get('/blogs/{blog}', [App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -55,6 +82,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('tasks/{task}/comments', [\App\Http\Controllers\Admin\TaskController::class, 'storeComment'])->name('tasks.comments.store');
         Route::get('attendances/sheet', [\App\Http\Controllers\Admin\AttendanceController::class, 'sheet'])->name('attendances.sheet');
         Route::resource('attendances', \App\Http\Controllers\Admin\AttendanceController::class);
+        Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
+        Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class)->only(['index', 'edit', 'update']);
     });
 
     Route::middleware(['role:employee'])->prefix('employee')->name('employee.')->group(function () {

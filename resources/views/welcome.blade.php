@@ -20,10 +20,10 @@
                     <span class="w-2 h-2 rounded-full bg-cyan-300"></span>
                     AI Powered Digital Solutions
                 </p>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] mb-6">Crafting Bold <br> Digital
+                <h2 class="text-4xl sm:text-5xl lg:text-5xl font-bold leading-[1.05] mb-6">Crafting Bold <br> Digital
                     Presence <br> For Brands <br> That Want To Lead</h2>
                 <p class="text-base sm:text-lg text-blue-100/90 leading-relaxed mb-9 max-w-2xl">We combine strategy, premium
-                    design, and high-performance development to deliver portfolio-grade websites that look exceptional and
+                    design, and <br> high-performance development to deliver <br> portfolio-grade websites that look exceptional and <br>
                     convert visitors into clients.</p>
                 <div class="flex flex-col sm:flex-row gap-4 mb-8">
                     <a href="#contact"

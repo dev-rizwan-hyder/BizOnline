@@ -76,7 +76,7 @@
         background:
           radial-gradient(circle at 8% 25%, rgba(85, 214, 255, 0.12), transparent 32%),
           radial-gradient(circle at 92% 18%, rgba(176, 123, 255, 0.15), transparent 30%),
-          linear-gradient(140deg, #060f32 0%, #13235b 42%, #311f64 100%) !important;
+          linear-gradient(180deg, var(--mx-bg-1) 0%, #090f34 35%, #13134a 70%, #140f3f 100%) !important;
       }
       .site-theme .bg-white,
       .site-theme .bg-gray-50 {

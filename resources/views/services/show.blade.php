@@ -60,7 +60,11 @@
         </div>
         <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             @foreach($page['work'] as $item)
-                @php($workImage = $workImages[$loop->index % count($workImages)])
+                @php
+                    $workImage = isset($item['image']) && $item['image']
+                        ? (str_starts_with($item['image'], 'services/') ? $item['image'] : 'services/' . $page['category'] . '/' . $item['image'])
+                        : ($workImages[$loop->index % count($workImages)] ?? 'portfolio_section.png');
+                @endphp
                 <article class="overflow-hidden rounded-[2rem] border border-white/10 bg-[#141a3f]/95 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-2">
                     <div class="relative h-72 bg-cover bg-center" style="background-image: url('{{ asset($workImage) }}');">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#020917]/95 via-[#020917]/35 to-transparent"></div>
@@ -93,7 +97,11 @@
 
         <div class="grid gap-6 lg:grid-cols-3">
             @foreach($packages as $package)
-                @php($packageImage = $workImages[$loop->index % count($workImages)])
+                @php
+                    $packageImage = isset($package['image']) && $package['image']
+                        ? (str_starts_with($package['image'], 'services/') ? $package['image'] : 'services/' . $page['category'] . '/' . $package['image'])
+                        : ($workImages[$loop->index % count($workImages)] ?? 'portfolio_section.png');
+                @endphp
                 <article class="group overflow-hidden rounded-[2rem] border border-white/10 bg-[#111739]/95 shadow-[0_20px_60px_rgba(0,0,0,0.22)] transition-transform duration-300 hover:-translate-y-2">
                     <div class="relative h-56 bg-cover bg-center" style="background-image: url('{{ asset($packageImage) }}');">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#07102f] via-[#07102f]/45 to-transparent"></div>
@@ -107,7 +115,7 @@
                         <div class="flex items-start justify-between gap-4">
                             <div>
                                 <h3 class="text-2xl font-semibold text-white">{{ $package['name'] }}</h3>
-                                <p class="mt-3 text-blue-100/75 text-sm leading-relaxed">A focused {{ strtolower($page['title']) }} package prepared for business-ready delivery.</p>
+                                <p class="mt-3 text-blue-100/75 text-sm leading-relaxed">{{ $package['description'] ?? ('A focused ' . strtolower($page['title']) . ' package prepared for business-ready delivery.') }}</p>
                             </div>
                             <p class="shrink-0 text-2xl font-bold text-cyan-200">{{ $package['price'] }}</p>
                         </div>
