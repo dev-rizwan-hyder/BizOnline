@@ -88,7 +88,7 @@
     ];
 @endphp
 
-<header class="fixed top-0 left-0 w-full z-50 border-t border-cyan-300/30 bg-[#050d2a]/80 backdrop-blur-md">
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 border-t border-transparent bg-transparent transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="min-h-20 lg:min-h-24 flex items-center justify-between gap-4">
             <a href="{{ url('/') }}" class="flex min-w-0 items-center gap-3 group">
@@ -198,12 +198,29 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var header = document.getElementById('site-header');
         var button = document.getElementById('site-mobile-menu-button');
         var menu = document.getElementById('site-mobile-menu');
 
         if (!button || !menu) {
             return;
         }
+
+        function handleHeaderBackground() {
+            if (!header) return;
+            var isMenuOpen = !menu.classList.contains('hidden');
+            if (window.scrollY > 10 || isMenuOpen) {
+                header.classList.remove('bg-transparent', 'border-transparent');
+                header.classList.add('bg-[#050d2a]/80', 'backdrop-blur-md', 'border-cyan-300/30');
+            } else {
+                header.classList.remove('bg-[#050d2a]/80', 'backdrop-blur-md', 'border-cyan-300/30');
+                header.classList.add('bg-transparent', 'border-transparent');
+            }
+        }
+
+        window.addEventListener('scroll', handleHeaderBackground);
+        // Run immediately to set correct initial state
+        handleHeaderBackground();
 
         button.addEventListener('click', function() {
             var isHidden = menu.classList.toggle('hidden');
@@ -213,6 +230,7 @@
             if (icon) {
                 icon.className = isHidden ? 'ri-menu-line text-xl' : 'ri-close-line text-xl';
             }
+            handleHeaderBackground();
         });
 
         menu.querySelectorAll('a').forEach(function(link) {
@@ -224,6 +242,7 @@
                 if (icon) {
                     icon.className = 'ri-menu-line text-xl';
                 }
+                handleHeaderBackground();
             });
         });
     });

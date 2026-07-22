@@ -3,7 +3,7 @@
 @section('content')
     <section id="home" class="relative min-h-[92vh] max-w-8xl overflow-hidden bg-[#081223]">
         <div class="absolute inset-0 hidden md:block bg-cover bg-center"
-            style="background-image: url('{{ asset('hero.png') }}');">
+            style="background-image: url('{{ asset('home.png') }}');">
         </div>
         <div class="absolute inset-0 bg-gradient-to-r from-[#040a18]/92 via-[#07153a]/74 to-[#0a1933]/32"></div>
         <div
@@ -143,7 +143,7 @@
                             <div
                                 class="rounded-2xl border border-indigo-300/45 bg-[#11184c]/88 shadow-[0_0_24px_rgba(120,127,255,0.35)] overflow-hidden">
                                 <div class="h-44 bg-cover bg-center"
-                                    style="background-image:url('{{ asset('hero.png') }}');"></div>
+                                    style="background-image:url('{{ asset('home.png') }}');"></div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2 mb-2 text-[10px]">
                                         <span
@@ -212,7 +212,7 @@
                             <div
                                 class="rounded-2xl border border-indigo-300/45 bg-[#11184c]/88 shadow-[0_0_24px_rgba(120,127,255,0.35)] overflow-hidden">
                                 <div class="h-44 bg-cover bg-center"
-                                    style="background-image:url('{{ asset('hero.png') }}');"></div>
+                                    style="background-image:url('{{ asset('home.png') }}');"></div>
                                 <div class="p-4">
                                     <div class="flex items-center gap-2 mb-2 text-[10px]">
                                         <span
