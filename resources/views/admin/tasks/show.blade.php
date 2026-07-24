@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 max-w-4xl">
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 w-full">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-2 space-y-6">
             <div>
@@ -27,6 +27,18 @@
         </div>
         
         <div class="space-y-6 bg-slate-50 p-6 rounded-xl border border-slate-100">
+            <div>
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Project</h3>
+                @if($task->project)
+                    <a href="{{ route('admin.projects.show', $task->project) }}" class="inline-flex items-center gap-1.5 text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-lg border border-indigo-200/60 transition-colors">
+                        <i class="ri-folder-3-line"></i>
+                        {{ $task->project->name }}
+                    </a>
+                @else
+                    <span class="text-slate-500 italic text-sm">Standalone Task (No Project)</span>
+                @endif
+            </div>
+
             <div>
                 <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Assigned To</h3>
                 @if($task->assignee)
@@ -66,7 +78,7 @@
     </div>
 </div>
 
-<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 max-w-4xl mt-8">
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 w-full mt-8">
     <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center">
         <i class="ri-chat-3-line mr-2 text-indigo-600"></i> Task Discussion
         <span class="ml-2 px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full">{{ $task->comments->count() }}</span>

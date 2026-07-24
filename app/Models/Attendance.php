@@ -13,6 +13,8 @@ class Attendance extends Model
         'breaks',
         'check_out',
         'status',
+        'daily_report',
+        'task_ids',
     ];
 
     protected $casts = [
@@ -20,11 +22,20 @@ class Attendance extends Model
         'check_in' => 'datetime',
         'breaks' => 'array',
         'check_out' => 'datetime',
+        'task_ids' => 'array',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getSelectedTasksAttribute()
+    {
+        if (empty($this->task_ids)) {
+            return collect();
+        }
+        return Task::whereIn('id', $this->task_ids)->with('project')->get();
     }
 
     public function getBreakDurationAttribute()
@@ -36,11 +47,11 @@ class Attendance extends Model
             if (isset($break['start'])) {
                 $start = \Carbon\Carbon::parse($break['start']);
                 $end = isset($break['end']) ? \Carbon\Carbon::parse($break['end']) : now();
-                $totalSeconds += $start->diffInSeconds($end);
+                $totalSeconds += (int) $start->diffInSeconds($end);
             }
         }
         
-        return $totalSeconds;
+        return (int) $totalSeconds;
     }
 
     public function getWorkingDurationAttribute()
@@ -48,9 +59,9 @@ class Attendance extends Model
         if (!$this->check_in) return 0;
         
         $end = $this->check_out ?: now();
-        $totalSeconds = $this->check_in->diffInSeconds($end);
+        $totalSeconds = (int) $this->check_in->diffInSeconds($end);
         
-        return max(0, $totalSeconds - $this->break_duration);
+        return max(0, (int) ($totalSeconds - $this->break_duration));
     }
     
     public function formatDuration($seconds)

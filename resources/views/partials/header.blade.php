@@ -83,7 +83,7 @@
         ['label' => 'Home', 'href' => url('/')],
         ['label' => 'About', 'href' => route('work')],
         ['label' => 'Blog', 'href' => route('blogs.index')],
-        ['label' => 'Contact', 'href' => route('contact.show')],
+        ['label' => 'Contact Us', 'href' => route('contact.show')],
     ];
 @endphp
 
@@ -96,13 +96,18 @@
                 </div>
             </a>
 
+            <!-- Desktop Navigation Sequence: Home -> About -> Services -> Blog -> Contact Us -->
             <nav
                 class="hidden lg:flex items-center gap-1 rounded-full border border-indigo-300/35 bg-[#121f4e]/85 p-1 shadow-[0_0_20px_rgba(112,120,255,0.25)]">
-                @foreach ($topLinks as $link)
-                    <a href="{{ $link['href'] }}"
-                        class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full">{{ $link['label'] }}</a>
-                @endforeach
+                <!-- 1. Home -->
+                <a href="{{ url('/') }}"
+                    class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full">Home</a>
 
+                <!-- 2. About -->
+                <a href="{{ route('work') }}"
+                    class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full">About</a>
+
+                <!-- 3. Services Dropdown -->
                 <div class="relative group">
                     <button type="button"
                         class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full inline-flex items-center gap-1">
@@ -139,6 +144,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 4. Blog -->
+                <a href="{{ route('blogs.index') }}"
+                    class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full">Blog</a>
+
+                <!-- 5. Contact Us -->
+                <a href="{{ route('contact.show') }}"
+                    class="px-4 py-2 text-md font-semibold text-blue-100 hover:text-white hover:bg-white/10 rounded-full whitespace-nowrap">Contact Us</a>
             </nav>
 
             <div class="flex shrink-0 items-center gap-2">
@@ -155,35 +168,39 @@
             </div>
         </div>
 
+        <!-- Mobile Navigation Sequence: Home -> About -> Services -> Blog -> Contact Us -->
         <div id="site-mobile-menu" class="hidden lg:hidden pb-5">
             <div
                 class="max-h-[calc(100vh-6rem)] overflow-y-auto rounded-2xl border border-cyan-300/25 bg-[#091741]/95 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
-                <div class="grid gap-2 sm:grid-cols-3">
-                    @foreach ($topLinks as $link)
-                        <a href="{{ $link['href'] }}"
-                            class="rounded-xl border border-cyan-300/20 bg-[#12235f]/75 px-4 py-3 text-sm font-semibold text-cyan-100">{{ $link['label'] }}</a>
-                    @endforeach
+                <div class="grid gap-2 sm:grid-cols-2">
+                    <a href="{{ url('/') }}" class="rounded-xl border border-cyan-300/20 bg-[#12235f]/75 px-4 py-3 text-sm font-semibold text-cyan-100">Home</a>
+                    <a href="{{ route('work') }}" class="rounded-xl border border-cyan-300/20 bg-[#12235f]/75 px-4 py-3 text-sm font-semibold text-cyan-100">About</a>
                 </div>
 
-                <div class="mt-4 space-y-3">
-                    @foreach ($serviceMenus as $menu)
-                        <details class="group rounded-2xl border border-cyan-300/20 bg-[#0d1d51]/80">
-                            <summary
-                                class="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-white">
-                                <span>{{ $menu['label'] }}</span>
-                                <i
-                                    class="ri-arrow-down-s-line text-cyan-200 transition-transform group-open:rotate-180"></i>
-                            </summary>
-                            <div class="border-t border-cyan-300/15 px-3 py-3">
-                                <a href="{{ $menu['href'] }}"
-                                    class="mb-2 block rounded-xl bg-cyan-400/10 px-3 py-2 text-sm font-semibold text-cyan-100">Overview</a>
-                                @foreach ($menu['items'] as $item)
-                                    <a href="{{ $item['href'] }}"
-                                        class="block rounded-xl px-3 py-2 text-sm text-blue-100/85 hover:bg-white/10 hover:text-white">{{ $item['label'] }}</a>
-                                @endforeach
-                            </div>
-                        </details>
-                    @endforeach
+                <div class="mt-3 space-y-3">
+                    <details class="group rounded-2xl border border-cyan-300/20 bg-[#0d1d51]/80">
+                        <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-white">
+                            <span>Services</span>
+                            <i class="ri-arrow-down-s-line text-cyan-200 transition-transform group-open:rotate-180"></i>
+                        </summary>
+                        <div class="border-t border-cyan-300/15 px-3 py-3 space-y-3">
+                            @foreach ($serviceMenus as $menu)
+                                <div>
+                                    <a href="{{ $menu['href'] }}" class="mb-1 block text-xs font-bold uppercase tracking-wider text-cyan-300">{{ $menu['label'] }}</a>
+                                    <div class="space-y-1">
+                                        @foreach ($menu['items'] as $item)
+                                            <a href="{{ $item['href'] }}" class="block rounded-lg px-3 py-1.5 text-xs text-blue-100/85 hover:bg-white/10 hover:text-white">{{ $item['label'] }}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </details>
+                </div>
+
+                <div class="grid gap-2 sm:grid-cols-2 mt-3">
+                    <a href="{{ route('blogs.index') }}" class="rounded-xl border border-cyan-300/20 bg-[#12235f]/75 px-4 py-3 text-sm font-semibold text-cyan-100">Blog</a>
+                    <a href="{{ route('contact.show') }}" class="rounded-xl border border-cyan-300/20 bg-[#12235f]/75 px-4 py-3 text-sm font-semibold text-cyan-100">Contact Us</a>
                 </div>
 
                 <a href="{{ route('contact.show') }}"

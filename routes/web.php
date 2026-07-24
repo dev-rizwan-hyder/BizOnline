@@ -87,6 +87,13 @@ $showServicePage = function (string $service) {
         if ($dbService->work) {
             $page['work'] = $dbService->work;
         }
+        if ($dbService->meta && is_array($dbService->meta)) {
+            foreach ($dbService->meta as $mKey => $mVal) {
+                if ($mVal !== null && $mVal !== '') {
+                    $page[$mKey] = $mVal;
+                }
+            }
+        }
     }
 
     $categories = config('service_pages.categories');
@@ -118,6 +125,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
         Route::resource('employees', \App\Http\Controllers\Admin\EmployeeController::class);
         Route::resource('tasks', \App\Http\Controllers\Admin\TaskController::class);
         Route::post('tasks/{task}/comments', [\App\Http\Controllers\Admin\TaskController::class, 'storeComment'])->name('tasks.comments.store');
@@ -131,8 +139,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:employee'])->prefix('employee')->name('employee.')->group(function () {
         Route::get('dashboard', [\App\Http\Controllers\Employee\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('tasks', [\App\Http\Controllers\Employee\TaskController::class, 'index'])->name('tasks.index');
         Route::get('tasks/{task}', [\App\Http\Controllers\Employee\TaskController::class, 'show'])->name('tasks.show');
         Route::patch('tasks/{task}/status', [\App\Http\Controllers\Employee\TaskController::class, 'updateStatus'])->name('tasks.status');
+        Route::post('tasks/{task}/start', [\App\Http\Controllers\Employee\TaskController::class, 'start'])->name('tasks.start');
+        Route::post('tasks/{task}/pause', [\App\Http\Controllers\Employee\TaskController::class, 'pause'])->name('tasks.pause');
+        Route::post('tasks/{task}/resume', [\App\Http\Controllers\Employee\TaskController::class, 'resume'])->name('tasks.resume');
+        Route::post('tasks/{task}/finish', [\App\Http\Controllers\Employee\TaskController::class, 'finish'])->name('tasks.finish');
         Route::post('tasks/{task}/comments', [\App\Http\Controllers\Employee\TaskController::class, 'storeComment'])->name('tasks.comments.store');
         
         // Attendance Routes

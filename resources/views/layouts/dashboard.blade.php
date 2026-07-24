@@ -153,6 +153,14 @@
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Employee Profiles</span>
                     </a>
                     
+                    <a href="{{ route('admin.projects.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.projects.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('admin.projects.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-folder-3-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Projects</span>
+                    </a>
+
                     <a href="{{ route('admin.tasks.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.tasks.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
                         @if(request()->routeIs('admin.tasks.*'))
                             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
@@ -217,7 +225,10 @@
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Dashboard</span>
                     </a>
 
-                    <a href="{{ route('employee.dashboard') }}#my-tasks" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group hover:bg-slate-800 hover:text-white">
+                    <a href="{{ route('employee.tasks.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('employee.tasks.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('employee.tasks.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
                         <i class="ri-task-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">My Tasks</span>
                     </a>

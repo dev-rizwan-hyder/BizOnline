@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Project;
+use App\Models\Attendance;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -36,7 +38,6 @@ class DashboardController extends Controller
             $assigned = $tasks->count();
             $completed = $tasks->where('status', 'completed')->count();
             $inProgress = $tasks->where('status', 'in_progress')->count();
-            // Pending can include pending and in_progress if not completed or delayed
             $pending = $tasks->whereIn('status', ['pending', 'in_progress'])->count();
             $delayed = $tasks->where('status', 'delayed')->count();
 
@@ -62,22 +63,43 @@ class DashboardController extends Controller
             ];
         });
 
-        // Total Counts for Top Cards
+        // Top KPI Cards Metrics
         $totalEmployees = $employees->count();
+        $totalProjects = Project::count();
+        $activeProjects = Project::where('status', 'in_progress')->count();
         $totalTasks = Task::count();
         $totalCompleted = Task::where('status', 'completed')->count();
-        $totalPending = Task::whereIn('status', ['pending', 'in_progress'])->count();
+        $totalInProgress = Task::where('status', 'in_progress')->count();
+        $totalPending = Task::where('status', 'pending')->count();
         $totalDelayed = Task::where('status', 'delayed')->count();
+
+        // Attendance stats for today
+        $todayAttendance = Attendance::whereDate('date', Carbon::today())->get();
+        $checkedInCount = $todayAttendance->whereIn('status', ['checked_in', 'on_break', 'checked_out'])->count();
+        $onBreakCount = $todayAttendance->where('status', 'on_break')->count();
+
+        // Recent active projects
+        $recentProjects = Project::withCount('tasks')->with('employees')->latest()->take(5)->get();
+
+        // Recent tasks
+        $recentTasks = Task::with(['assignee', 'project'])->latest()->take(6)->get();
 
         return view('admin.dashboard', compact(
             'employeeStats',
             'activeTab',
             'selectedDate',
             'totalEmployees',
+            'totalProjects',
+            'activeProjects',
             'totalTasks',
             'totalCompleted',
+            'totalInProgress',
             'totalPending',
-            'totalDelayed'
+            'totalDelayed',
+            'checkedInCount',
+            'onBreakCount',
+            'recentProjects',
+            'recentTasks'
         ));
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -50,12 +51,27 @@ class AttendanceController extends Controller
             'break_time' => $formatHours($totalBreakSeconds),
         ];
 
+        $todayAttendance = $this->getTodayAttendance();
+
+        // Tasks that have timer started or worked on
+        $startedTasks = Task::where('assigned_to', $user->id)
+            ->where(function($q) {
+                $q->whereNotNull('started_at')
+                  ->orWhere('total_seconds', '>', 0)
+                  ->orWhereIn('status', ['in_progress', 'paused', 'completed']);
+            })
+            ->with('project')
+            ->latest()
+            ->get();
+
         return view('employee.attendance.index', compact(
             'attendances',
             'month',
             'daysInMonth',
             'startDate',
-            'stats'
+            'stats',
+            'todayAttendance',
+            'startedTasks'
         ));
     }
 
@@ -109,15 +125,23 @@ class AttendanceController extends Controller
         return redirect()->back()->withErrors('Cannot end break right now.');
     }
 
-    public function checkOut()
+    public function checkOut(Request $request)
     {
         $attendance = $this->getTodayAttendance();
         if ($attendance && in_array($attendance->status, ['checked_in', 'on_break'])) {
+            $validated = $request->validate([
+                'daily_report' => 'nullable|string|max:5000',
+                'task_ids' => 'nullable|array',
+                'task_ids.*' => 'exists:tasks,id',
+            ]);
+
             $attendance->update([
                 'check_out' => Carbon::now(),
-                'status' => 'checked_out'
+                'status' => 'checked_out',
+                'daily_report' => $validated['daily_report'] ?? $attendance->daily_report,
+                'task_ids' => $validated['task_ids'] ?? [],
             ]);
-            return redirect()->back()->with('success', 'Checked out successfully.');
+            return redirect()->back()->with('success', 'Checked out successfully! Daily report logged.');
         }
         return redirect()->back()->withErrors('Cannot check out right now.');
     }

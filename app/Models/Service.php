@@ -14,11 +14,13 @@ class Service extends Model
         'intro',
         'packages',
         'work',
+        'meta',
     ];
 
     protected $casts = [
         'packages' => 'array',
         'work' => 'array',
+        'meta' => 'array',
     ];
 
     /**

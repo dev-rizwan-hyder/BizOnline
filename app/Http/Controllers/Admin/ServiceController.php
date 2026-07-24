@@ -37,9 +37,13 @@ class ServiceController extends Controller
     public function edit(string $slug)
     {
         $configPages = config('service_pages.pages');
+        $categories = config('service_pages.categories');
         abort_unless(array_key_exists($slug, $configPages), 404);
 
         $page = $configPages[$slug];
+        $categoryKey = $page['category'] ?? 'general';
+        $category = $categories[$categoryKey] ?? [];
+
         $dbService = Service::where('slug', $slug)->first();
 
         // Load packages with fallback and prepare features text
@@ -51,16 +55,35 @@ class ServiceController extends Controller
         // Load work with fallback
         $work = ($dbService && $dbService->work) ? $dbService->work : ($page['work'] ?? []);
 
+        // Load meta fields with fallback
+        $meta = ($dbService && $dbService->meta) ? $dbService->meta : [];
+        $meta['badge'] = $meta['badge'] ?? ($category['badge'] ?? 'DIGITAL PERFORMANCE LAB');
+        $meta['hero_pills'] = $meta['hero_pills'] ?? 'High Performance, Scalable Architecture, Modern UI/UX, Custom Features, Conversion Ready';
+        $meta['work_kicker'] = $meta['work_kicker'] ?? 'WHAT MAKES IT WORK';
+        $meta['work_title'] = $meta['work_title'] ?? ('What Makes ' . ($dbService->title ?? $page['title'] ?? '') . ' Work?');
+        $meta['work_intro'] = $meta['work_intro'] ?? 'Strong strategic execution turns standard assets into high-converting experiences. We blend real market insights, structured design, and channel-ready deliverables so every solution drives measurable sales and growth.';
+        $meta['system_kicker'] = $meta['system_kicker'] ?? 'HOW IT WORKS';
+        $meta['system_title'] = $meta['system_title'] ?? 'A Complete System, Not A Quick Fix';
+        $meta['system_intro'] = $meta['system_intro'] ?? 'We turn project briefs into a smooth pipeline of structured concepts, clean deliverables, and high-performance outcomes your business can count on.';
+        $meta['system_pills'] = $meta['system_pills'] ?? 'Corporate, E-Commerce, SaaS & Tech, Growth Brands, Enterprise';
+        $meta['step_01_title'] = $meta['step_01_title'] ?? 'Match & Strategy';
+        $meta['step_01_text'] = $meta['step_01_text'] ?? 'Find the right frameworks, code architectures, and visual styles that fit your category, target audience, and growth targets.';
+        $meta['step_02_title'] = $meta['step_02_title'] ?? 'Direct & Build';
+        $meta['step_02_text'] = $meta['step_02_text'] ?? 'Shape user journeys, proof points, responsive layouts, and clean codebase standards before full deployment begins.';
+        $meta['step_03_title'] = $meta['step_03_title'] ?? 'Package & Scale';
+        $meta['step_03_text'] = $meta['step_03_text'] ?? 'Deliver organized deliverables, documentation, asset guidelines, and performance metrics for your team.';
+
         $service = (object)[
             'slug' => $slug,
             'title' => ($dbService && $dbService->title) ? $dbService->title : ($page['title'] ?? Str::headline($slug)),
             'headline' => ($dbService && $dbService->headline) ? $dbService->headline : ($page['headline'] ?? ''),
             'intro' => ($dbService && $dbService->intro) ? $dbService->intro : ($page['intro'] ?? ''),
-            'category' => $page['category'] ?? 'general',
+            'category' => $categoryKey,
             'default_image' => $page['image'] ?? 'portfolio_section.png',
             'custom_image' => $dbService ? $dbService->image : null,
             'packages' => $packages,
             'work' => $work,
+            'meta' => $meta,
         ];
 
         return view('admin.services.edit', compact('service'));
@@ -83,6 +106,23 @@ class ServiceController extends Controller
             'intro' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             
+            // Validate Meta fields
+            'meta.badge' => 'nullable|string|max:255',
+            'meta.hero_pills' => 'nullable|string|max:500',
+            'meta.work_kicker' => 'nullable|string|max:255',
+            'meta.work_title' => 'nullable|string|max:500',
+            'meta.work_intro' => 'nullable|string',
+            'meta.system_kicker' => 'nullable|string|max:255',
+            'meta.system_title' => 'nullable|string|max:500',
+            'meta.system_intro' => 'nullable|string',
+            'meta.system_pills' => 'nullable|string|max:500',
+            'meta.step_01_title' => 'nullable|string|max:255',
+            'meta.step_01_text' => 'nullable|string|max:1000',
+            'meta.step_02_title' => 'nullable|string|max:255',
+            'meta.step_02_text' => 'nullable|string|max:1000',
+            'meta.step_03_title' => 'nullable|string|max:255',
+            'meta.step_03_text' => 'nullable|string|max:1000',
+
             // Validate Packages
             'packages' => 'required|array|size:3',
             'packages.*.name' => 'required|string|max:255',
@@ -111,7 +151,7 @@ class ServiceController extends Controller
             File::makeDirectory($path, 0755, true, true);
         }
 
-        // Process Main Image
+        // Process Main Hero Image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             if ($dbService->image && File::exists($path . '/' . $dbService->image)) {
@@ -121,6 +161,10 @@ class ServiceController extends Controller
             $image->move($path, $filename);
             $dbService->image = $filename;
         }
+
+        // Process Meta Fields
+        $metaInput = $request->input('meta', []);
+        $dbService->meta = $metaInput;
 
         // Process Packages
         $inputPackages = $request->input('packages', []);
@@ -152,7 +196,7 @@ class ServiceController extends Controller
         }
         $dbService->packages = $finalPackages;
 
-        // Process Work Items
+        // Process Work Showcase Items
         $inputWork = $request->input('work', []);
         $existingWork = $dbService->work ?? $page['work'] ?? [];
         $finalWork = [];

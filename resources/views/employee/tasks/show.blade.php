@@ -12,21 +12,57 @@
     </div>
 </div>
 
-<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 max-w-4xl">
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 w-full">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="md:col-span-2 space-y-6">
             <div>
                 <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Description</h3>
                 <p class="text-slate-700 whitespace-pre-wrap">{{ $task->description ?: 'No description provided.' }}</p>
             </div>
+            
+            @if($task->project)
+                <div class="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4">
+                    <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block mb-1">Associated Project</span>
+                    <h4 class="text-base font-bold text-slate-900 flex items-center gap-1.5">
+                        <i class="ri-folder-3-line text-indigo-500"></i> {{ $task->project->name }}
+                    </h4>
+                </div>
+            @endif
         </div>
         
         <div class="space-y-6 bg-slate-50 p-6 rounded-xl border border-slate-100">
             <div>
-                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Due Date</h3>
-                <div class="flex items-center text-slate-700 font-medium">
-                    <i class="ri-calendar-event-line mr-2 text-slate-400"></i>
-                    {{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('M d, Y') : 'No due date' }}
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Deadline & Time</h3>
+                <div class="flex items-center text-slate-900 font-bold text-sm">
+                    <i class="ri-time-line mr-2 text-indigo-600"></i>
+                    {{ ($task->deadline ?: \Carbon\Carbon::parse($task->due_date))->format('M d, Y h:i A') }}
+                </div>
+            </div>
+
+            <div x-data="{ 
+                seconds: {{ $task->effective_time_spent_seconds }},
+                isRunning: {{ $task->status === 'in_progress' ? 'true' : 'false' }},
+                timer: null,
+                formatTime(sec) {
+                    let total = Math.floor(sec);
+                    let h = Math.floor(total / 3600);
+                    let m = Math.floor((total % 3600) / 60);
+                    let s = total % 60;
+                    let pad = (n) => String(n).padStart(2, '0');
+                    if (h > 0) {
+                        return `${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+                    }
+                    return `${pad(m)}m ${pad(s)}s`;
+                }
+            }" x-init="
+                if (isRunning) {
+                    timer = setInterval(() => { seconds++; }, 1000);
+                }
+            ">
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Time Logged</h3>
+                <div class="flex items-center text-indigo-700 font-extrabold text-base bg-indigo-50 p-2.5 rounded-xl border border-indigo-100">
+                    <i class="ri-timer-flash-line mr-2 text-indigo-600" :class="{ 'animate-spin': isRunning }"></i>
+                    <span x-text="formatTime(seconds)"></span>
                 </div>
             </div>
 
@@ -38,28 +74,65 @@
                 </span>
             </div>
 
+            <!-- Task Controls -->
             <div>
-                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Update Status</h3>
-                <form action="{{ route('employee.tasks.status', $task) }}" method="POST">
-                    @csrf
-                    @method('PATCH')
-                    <div class="relative inline-block w-full">
-                        <select name="status" onchange="this.form.submit()" class="w-full appearance-none pl-4 pr-10 py-2 rounded-lg text-sm font-semibold border focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500 cursor-pointer transition-colors shadow-sm
-                            {{ $task->status === 'completed' ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100' : ($task->status === 'in_progress' ? 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100') }}">
-                            <option value="pending" {{ $task->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                            <option value="in_progress" {{ $task->status === 'in_progress' ? 'selected' : '' }}>In Progress</option>
-                            <option value="completed" {{ $task->status === 'completed' ? 'selected' : '' }}>Completed</option>
-                        </select>
-                        <i class="ri-arrow-down-s-line absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none 
-                            {{ $task->status === 'completed' ? 'text-emerald-500' : ($task->status === 'in_progress' ? 'text-blue-500' : 'text-slate-400') }}"></i>
+                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-2">Task Execution Controls</h3>
+                @if($task->status === 'pending')
+                    <form action="{{ route('employee.tasks.start', $task) }}" method="POST" hx-boost="false">
+                        @csrf
+                        <button type="submit" class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1.5">
+                            <i class="ri-play-fill text-base"></i> Start Task
+                        </button>
+                    </form>
+                @elseif($task->status === 'in_progress')
+                    <div class="flex gap-2">
+                        <form action="{{ route('employee.tasks.pause', $task) }}" method="POST" class="flex-1" hx-boost="false">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1">
+                                <i class="ri-pause-fill text-base"></i> Pause
+                            </button>
+                        </form>
+                        <form action="{{ route('employee.tasks.finish', $task) }}" method="POST" class="flex-1" hx-boost="false">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1">
+                                <i class="ri-checkbox-circle-fill text-base"></i> Finish
+                            </button>
+                        </form>
                     </div>
-                </form>
+                @elseif($task->status === 'paused')
+                    <div class="flex gap-2">
+                        <form action="{{ route('employee.tasks.resume', $task) }}" method="POST" class="flex-1" hx-boost="false">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1">
+                                <i class="ri-play-fill text-base"></i> Resume Work
+                            </button>
+                        </form>
+                        <form action="{{ route('employee.tasks.finish', $task) }}" method="POST" class="flex-1" hx-boost="false">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-1">
+                                <i class="ri-checkbox-circle-fill text-base"></i> Finish
+                            </button>
+                        </form>
+                    </div>
+                @elseif($task->status === 'completed')
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-2 rounded-xl border border-emerald-200 flex items-center justify-center gap-1 w-full">
+                            <i class="ri-check-line text-base"></i> Task Completed
+                        </span>
+                        <form action="{{ route('employee.tasks.resume', $task) }}" method="POST" hx-boost="false" onsubmit="return confirm('Re-open and resume working on this task?');">
+                            @csrf
+                            <button type="submit" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-all flex items-center justify-center gap-1">
+                                <i class="ri-restart-line text-indigo-600"></i> Resume / Re-open Task
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
 </div>
 
-<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 max-w-4xl mt-8">
+<div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 sm:p-8 w-full mt-8">
     <h3 class="text-lg font-bold text-slate-900 mb-6 flex items-center">
         <i class="ri-chat-3-line mr-2 text-indigo-600"></i> Task Discussion
         <span class="ml-2 px-2 py-0.5 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full">{{ $task->comments->count() }}</span>
