@@ -4,74 +4,73 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 
-
-
+// Guest-only routes
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
-
-    // Show the form
-    Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
-
-    // Handle form submission
-    Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
-    Route::get('/', function () {
-        return view('welcome');
-    });
-
-    $showServicePage = function (string $service) {
-        $pages = config('service_pages.pages');
-        abort_unless(array_key_exists($service, $pages), 404);
-
-        $page = $pages[$service];
-
-        // Load database overrides if exist
-        $dbService = \App\Models\Service::where('slug', $service)->first();
-        if ($dbService) {
-            if ($dbService->image) {
-                $page['image'] = 'services/' . $page['category'] . '/' . $dbService->image;
-            }
-            if ($dbService->title) {
-                $page['title'] = $dbService->title;
-            }
-            if ($dbService->headline) {
-                $page['headline'] = $dbService->headline;
-            }
-            if ($dbService->intro) {
-                $page['intro'] = $dbService->intro;
-            }
-            if ($dbService->packages) {
-                $page['packages'] = $dbService->packages;
-            }
-            if ($dbService->work) {
-                $page['work'] = $dbService->work;
-            }
-        }
-
-        $categories = config('service_pages.categories');
-        abort_unless(isset($categories[$page['category']]), 404);
-
-        $category = $categories[$page['category']];
-        $page['image'] = $page['image'] ?? $category['image'];
-        $page['work_images'] = $page['work_images'] ?? $category['work_images'];
-
-        return view('services.show', [
-            'page' => $page,
-            'category' => $category,
-            'slug' => $service,
-        ]);
-    };
-
-    Route::view('/work', 'work')->name('work');
-    Route::get('/logo-design', fn () => $showServicePage('logo-design'))->name('logo.design');
-    Route::get('/brand-identity', fn () => $showServicePage('brand-identity'))->name('brand.identity');
-    Route::get('/services/{service}', $showServicePage)->name('services.show');
-    
-    // Public Blog Routes
-    Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
-    Route::get('/blogs/{blog}', [App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
 });
 
+// Public Website Routes (accessible by guests and logged-in users)
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+$showServicePage = function (string $service) {
+    $pages = config('service_pages.pages');
+    abort_unless(array_key_exists($service, $pages), 404);
+
+    $page = $pages[$service];
+
+    // Load database overrides if exist
+    $dbService = \App\Models\Service::where('slug', $service)->first();
+    if ($dbService) {
+        if ($dbService->image) {
+            $page['image'] = 'services/' . $page['category'] . '/' . $dbService->image;
+        }
+        if ($dbService->title) {
+            $page['title'] = $dbService->title;
+        }
+        if ($dbService->headline) {
+            $page['headline'] = $dbService->headline;
+        }
+        if ($dbService->intro) {
+            $page['intro'] = $dbService->intro;
+        }
+        if ($dbService->packages) {
+            $page['packages'] = $dbService->packages;
+        }
+        if ($dbService->work) {
+            $page['work'] = $dbService->work;
+        }
+    }
+
+    $categories = config('service_pages.categories');
+    abort_unless(isset($categories[$page['category']]), 404);
+
+    $category = $categories[$page['category']];
+    $page['image'] = $page['image'] ?? $category['image'];
+    $page['work_images'] = $page['work_images'] ?? $category['work_images'];
+
+    return view('services.show', [
+        'page' => $page,
+        'category' => $category,
+        'slug' => $service,
+    ]);
+};
+
+Route::view('/work', 'work')->name('work');
+Route::get('/logo-design', fn () => $showServicePage('logo-design'))->name('logo.design');
+Route::get('/brand-identity', fn () => $showServicePage('brand-identity'))->name('brand.identity');
+Route::get('/services/{service}', $showServicePage)->name('services.show');
+
+// Public Blog Routes
+Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs.index');
+Route::get('/blogs/{blog}', [App\Http\Controllers\BlogController::class, 'show'])->name('blogs.show');
+
+// Authenticated Routes
 Route::middleware(['auth'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -80,6 +79,8 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('employees', \App\Http\Controllers\Admin\EmployeeController::class);
         Route::resource('tasks', \App\Http\Controllers\Admin\TaskController::class);
         Route::post('tasks/{task}/comments', [\App\Http\Controllers\Admin\TaskController::class, 'storeComment'])->name('tasks.comments.store');
+        Route::get('reports', [\App\Http\Controllers\Admin\ReportController::class, 'index'])->name('reports.index');
+        Route::resource('policies', \App\Http\Controllers\Admin\PolicyController::class);
         Route::get('attendances/sheet', [\App\Http\Controllers\Admin\AttendanceController::class, 'sheet'])->name('attendances.sheet');
         Route::resource('attendances', \App\Http\Controllers\Admin\AttendanceController::class);
         Route::resource('blogs', \App\Http\Controllers\Admin\BlogController::class);
@@ -98,5 +99,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('attendance/break-start', [\App\Http\Controllers\Employee\AttendanceController::class, 'startBreak'])->name('attendance.break-start');
         Route::post('attendance/break-end', [\App\Http\Controllers\Employee\AttendanceController::class, 'endBreak'])->name('attendance.break-end');
         Route::post('attendance/check-out', [\App\Http\Controllers\Employee\AttendanceController::class, 'checkOut'])->name('attendance.check-out');
+
+        // Personal Report & Policy Routes
+        Route::get('reports', [\App\Http\Controllers\Employee\ReportController::class, 'index'])->name('reports.index');
+        Route::get('policies', [\App\Http\Controllers\Employee\PolicyController::class, 'index'])->name('policies.index');
     });
 });

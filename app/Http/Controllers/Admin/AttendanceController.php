@@ -17,7 +17,7 @@ class AttendanceController extends Controller
         $endDate = $startDate->copy()->endOfMonth();
         $daysInMonth = $startDate->daysInMonth;
 
-        $employees = User::where('role', 'employee')->get();
+        $employees = User::where('role', '!=', 'admin')->get();
         
         $attendances = Attendance::whereBetween('date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])->get();
         
@@ -51,7 +51,7 @@ class AttendanceController extends Controller
         }
 
         $attendances = $query->latest('check_in')->paginate(15);
-        $employees = User::where('role', 'employee')->get();
+        $employees = User::where('role', '!=', 'admin')->get();
 
         // KPIs
         $totalRecords = $attendances->total();
@@ -84,7 +84,7 @@ class AttendanceController extends Controller
 
     public function create()
     {
-        $employees = User::where('role', 'employee')->get();
+        $employees = User::where('role', '!=', 'admin')->get();
         return view('admin.attendances.create', compact('employees'));
     }
 

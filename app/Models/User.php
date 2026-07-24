@@ -23,6 +23,21 @@ class User extends Authenticatable
         'password',
         'role',
         'contact_info',
+        'father_name',
+        'date_of_birth',
+        'cnic_number',
+        'mobile_number_1',
+        'mobile_number_2',
+        'current_address',
+        'job_title',
+        'department',
+        'date_of_joining',
+        'bank_account_details',
+        'emergency_contact',
+        'cv_resume_path',
+        'profile_photo_path',
+        'experience_letters_path',
+        'employment_status',
     ];
 
     public function isAdmin(): bool
@@ -30,9 +45,14 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function isUser(): bool
+    {
+        return in_array($this->role, ['user', 'employee']);
+    }
+
     public function isEmployee(): bool
     {
-        return $this->role === 'employee';
+        return $this->isUser();
     }
 
     public function tasks()
@@ -70,6 +90,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'date_of_birth' => 'date',
+            'date_of_joining' => 'date',
         ];
     }
 }

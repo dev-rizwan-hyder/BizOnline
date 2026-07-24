@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +14,7 @@ class TaskController extends Controller
         if ($task->assigned_to !== Auth::id()) {
             abort(403);
         }
-        $task->load(['comments.user']);
+        $task->load(['comments.user', 'assigner']);
         return view('employee.tasks.show', compact('task'));
     }
 
@@ -44,11 +43,15 @@ class TaskController extends Controller
         }
 
         $validated = $request->validate([
-            'status' => 'required|in:pending,in_progress,completed',
+            'status' => 'required|in:pending,in_progress,completed,delayed',
+            'delay_reason' => 'nullable|string',
         ]);
 
-        $task->update($validated);
+        $task->update([
+            'status' => $validated['status'],
+            'delay_reason' => $validated['delay_reason'] ?? $task->delay_reason,
+        ]);
 
-        return redirect()->route('employee.dashboard')->with('success', 'Task status updated.');
+        return redirect()->back()->with('success', 'Task status updated successfully.');
     }
 }

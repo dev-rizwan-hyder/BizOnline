@@ -149,8 +149,8 @@
                         @if(request()->routeIs('admin.employees.*'))
                             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
                         @endif
-                        <i class="ri-team-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
-                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Employees</span>
+                        <i class="ri-folder-user-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Employee Profiles</span>
                     </a>
                     
                     <a href="{{ route('admin.tasks.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.tasks.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
@@ -159,6 +159,22 @@
                         @endif
                         <i class="ri-task-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Tasks</span>
+                    </a>
+                    
+                    <a href="{{ route('admin.reports.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.reports.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('admin.reports.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-file-chart-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Reports</span>
+                    </a>
+
+                    <a href="{{ route('admin.policies.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.policies.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('admin.policies.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-shield-user-line text-xl shrink-0 text-purple-400 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">HR Policies</span>
                     </a>
                     
                     <a href="{{ route('admin.attendances.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('admin.attendances.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
@@ -188,8 +204,8 @@
             </div>
             @endif
 
-            @if(Auth::check() && Auth::user()->role === 'employee')
-            <!-- Employee Section -->
+            @if(Auth::check() && Auth::user()->isEmployee())
+            <!-- Employee / User Section -->
             <div>
                 <div x-show="sidebarExpanded" class="px-3 mb-2 text-xs font-semibold tracking-wider text-slate-500 uppercase">Workspace</div>
                 <div class="space-y-1">
@@ -197,15 +213,37 @@
                         @if(request()->routeIs('employee.dashboard'))
                             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
                         @endif
+                        <i class="ri-dashboard-3-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">Dashboard</span>
+                    </a>
+
+                    <a href="{{ route('employee.dashboard') }}#my-tasks" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group hover:bg-slate-800 hover:text-white">
                         <i class="ri-task-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">My Tasks</span>
                     </a>
+
                     <a href="{{ route('employee.attendance') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('employee.attendance') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
                         @if(request()->routeIs('employee.attendance'))
                             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
                         @endif
                         <i class="ri-calendar-check-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
                         <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">My Attendance</span>
+                    </a>
+
+                    <a href="{{ route('employee.reports.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('employee.reports.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('employee.reports.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-file-chart-line text-xl shrink-0 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">My Report</span>
+                    </a>
+
+                    <a href="{{ route('employee.policies.index') }}" class="relative flex items-center px-3 py-2.5 rounded-lg transition-colors group {{ request()->routeIs('employee.policies.*') ? 'bg-indigo-600/10 text-indigo-400' : 'hover:bg-slate-800 hover:text-white' }}">
+                        @if(request()->routeIs('employee.policies.*'))
+                            <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-indigo-500 rounded-r-full"></div>
+                        @endif
+                        <i class="ri-shield-user-line text-xl shrink-0 text-purple-400 group-hover:scale-110 transition-transform"></i>
+                        <span x-show="sidebarExpanded" class="ml-3 font-medium truncate">HR Policies</span>
                     </a>
                 </div>
             </div>
