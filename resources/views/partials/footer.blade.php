@@ -9,7 +9,7 @@
                 <div>
                     <div class="flex items-center gap-3 mb-3">
                         <div class="min-w-0 flex items-center">
-                            <img src="bizlogo.png" alt="Biz Online Logo"
+                            <img src="{{ asset('bizlogo.png') }}" alt="Biz Online Logo"
                                 class="h-20 sm:h-20 md:h-24 lg:h-28 w-auto object-contain">
                         </div>
                     </div>

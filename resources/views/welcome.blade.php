@@ -561,7 +561,7 @@
     <section id="services" class="py-20 relative overflow-hidden max-w-8xl"
         style="background-image: url('{{ asset('our_services_2.png') }}'); background-size: cover; background-position: center;">
         <div
-            class="absolute inset-0 bg-[linear-gradient(150deg,rgba(3,11,40,0.82),rgba(8,24,76,0.72),rgba(18,24,89,0.78))]">
+            class="absolute inset-0 bg-[linear-gradient(150deg,rgba(3,11,40,0.88),rgba(8,24,76,0.82),rgba(18,24,89,0.85))]">
         </div>
         <div
             class="absolute inset-0 bg-[radial-gradient(circle_at_18%_15%,rgba(78,208,255,0.14),transparent_33%),radial-gradient(circle_at_82%_28%,rgba(170,108,255,0.18),transparent_34%)]">
@@ -572,200 +572,57 @@
                     class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/35 bg-[#0f225f]/70 text-[11px] font-semibold tracking-[0.18em] uppercase text-cyan-100 mb-4">
                     Our Services</p>
                 <h3 class="text-4xl md:text-5xl font-bold text-white mb-3">We Build Digital Solutions</h3>
-                <p class="text-blue-100/90 max-w-xl mx-auto text-lg leading-relaxed">Powerful, scalable and result-driven
-                    services to grow your business online.</p>
+                <p class="text-blue-100/90 max-w-xl mx-auto text-lg leading-relaxed">Powerful, scalable and result-driven services to grow your business online.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-paint-brush-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Branding & Design</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>Logo design</li>
-                        <li>Brand identity (colors, typography, style guide)</li>
-                        <li>Business card design</li>
-                        <li>Social media kit (banners, post templates)</li>
-                        <li>UI/UX design for apps & websites</li>
-                        <li>Product packaging design (if needed)</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm shadow-[0_6px_18px_rgba(79,160,255,0.14)]">Get
-                            Started <i class="ri-arrow-right-line"></i></a></div>
-                </article>
+                @php
+                    $allCategories = config('service_pages.categories');
+                    $allPages = config('service_pages.pages');
+                @endphp
 
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-global-line"></i>
+                @foreach ($allCategories as $catKey => $cat)
+                    @php
+                        $catPages = array_filter($allPages, fn($p) => ($p['category'] ?? '') === $catKey);
+                    @endphp
+                    <article
+                        class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/85 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_24px_rgba(96,157,255,0.28)] flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-3">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl shrink-0">
+                                    <i class="{{ $cat['icon'] }}"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-white leading-tight">{{ $cat['label'] }}</h4>
+                                    <p class="text-[11px] text-cyan-200/80 leading-tight mt-0.5">{{ $cat['hero_kicker'] }}</p>
+                                </div>
+                            </div>
+                            
+                            <ul class="text-blue-100/85 text-xs leading-relaxed my-4 space-y-1.5">
+                                @foreach ($catPages as $slug => $pItem)
+                                    <li>
+                                        <a href="{{ route('services.show', $slug) }}" class="inline-flex items-center gap-1.5 hover:text-cyan-300 transition-colors">
+                                            <i class="ri-arrow-right-s-line text-cyan-400"></i>
+                                            <span>{{ $pItem['title'] }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <h4 class="text-2xl font-bold text-white">Website Development</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>Business websites (company, portfolio, landing pages)</li>
-                        <li>E-commerce websites (online stores)</li>
-                        <li>Custom web applications (dashboards, CRM)</li>
-                        <li>CMS development (WordPress, custom CMS)</li>
-                        <li>Website redesign & optimization</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Request
-                            Quote <i class="ri-arrow-right-line"></i></a></div>
-                </article>
 
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-smartphone-line"></i>
+                        <div class="pt-3 border-t border-cyan-300/15 flex items-center justify-between text-xs">
+                            <span class="text-blue-200/70">{{ count($catPages) }} Specialized Services</span>
+                            @if(!empty($catPages))
+                                @php $firstSlug = array_key_first($catPages); @endphp
+                                <a href="{{ route('services.show', $firstSlug) }}"
+                                    class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white font-semibold shadow-[0_4px_12px_rgba(79,160,255,0.2)] hover:scale-105 transition-all">
+                                    Explore <i class="ri-arrow-right-line"></i>
+                                </a>
+                            @endif
                         </div>
-                        <h4 class="text-2xl font-bold text-white">Mobile App Development</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>Android apps</li>
-                        <li>iOS apps</li>
-                        <li>Cross-platform apps (Flutter / React Native)</li>
-                        <li>App UI/UX design</li>
-                        <li>App maintenance & updates</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Let's
-                            Talk <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-tools-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Custom Software</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>ERP systems</li>
-                        <li>CRM systems</li>
-                        <li>Inventory & HRM systems</li>
-                        <li>Billing & invoicing software</li>
-                        <li>School / hospital management systems</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Explore
-                            Options <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-cloud-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Backend & Cloud</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>API development</li>
-                        <li>Database design & management</li>
-                        <li>Cloud hosting setup (AWS, Google, Azure)</li>
-                        <li>Server deployment & maintenance</li>
-                        <li>DevOps automation</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Deploy
-                            Now <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-megaphone-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Digital Marketing</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>SEO (Search Engine Optimization)</li>
-                        <li>Social media marketing (Facebook, Instagram, TikTok)</li>
-                        <li>Google Ads / PPC campaigns</li>
-                        <li>Content marketing</li>
-                        <li>Email marketing campaigns</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Grow
-                            Traffic <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-image-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Graphic & Creative</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>Posters, banners, flyers</li>
-                        <li>YouTube thumbnails</li>
-                        <li>Video editing & motion graphics</li>
-                        <li>Company presentations (PPT design)</li>
-                        <li>UI mockups</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Creative
-                            Work <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-settings-2-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Maintenance & Support</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>Bug fixing</li>
-                        <li>Website updates</li>
-                        <li>Security patches</li>
-                        <li>Performance optimization</li>
-                        <li>Backup management</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Support
-                            Plans <i class="ri-arrow-right-line"></i></a></div>
-                </article>
-
-                <article
-                    class="group rounded-2xl border border-cyan-300/20 bg-[#0f1f56]/78 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_22px_rgba(96,157,255,0.28)]">
-                    <div class="flex items-center gap-4 mb-4">
-                        <div
-                            class="w-14 h-14 flex items-center justify-center rounded-2xl bg-[#1a2f78]/75 border border-cyan-300/30 text-cyan-200 text-2xl">
-                            <i class="ri-robot-line"></i>
-                        </div>
-                        <h4 class="text-2xl font-bold text-white">Advanced / Modern Services</h4>
-                    </div>
-                    <ul class="text-blue-100/75 text-sm leading-relaxed mb-5 list-disc list-inside">
-                        <li>AI chatbot integration</li>
-                        <li>Automation systems (WhatsApp, email, workflows)</li>
-                        <li>Data analytics dashboards</li>
-                        <li>SaaS product development</li>
-                        <li>API integrations (payments, SMS, WhatsApp)</li>
-                    </ul>
-                    <div class="text-right"><a href="#contact"
-                            class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-r from-cyan-400 to-indigo-500 text-white text-sm">Innovate
-                            <i class="ri-arrow-right-line"></i></a></div>
-                </article>
+                    </article>
+                @endforeach
             </div>
 
             <div

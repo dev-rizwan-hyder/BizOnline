@@ -19,6 +19,48 @@ Route::get('/contact', [ContactController::class, 'show'])->name('contact.show')
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 $showServicePage = function (string $service) {
+    $aliases = [
+        'logo-design' => 'logo-visual-identity',
+        'brand-identity' => 'brand-guidelines',
+        'business-cards' => 'marketing-collateral',
+        'social-media-kit' => 'social-media-assets',
+        'packaging-design' => 'packaging-print-design',
+        'business-websites' => 'corporate-websites',
+        'ecommerce-websites' => 'ecommerce-stores',
+        'custom-web-apps' => 'custom-web-applications',
+        'cms-development' => 'cms-development-services',
+        'website-redesign' => 'website-revamps-optimization',
+        'android-apps' => 'android-development',
+        'ios-apps' => 'ios-development',
+        'cross-platform-apps' => 'cross-platform-apps-dev',
+        'app-ui-ux-design' => 'mobile-ui-ux-design',
+        'app-maintenance' => 'app-support-maintenance',
+        'erp-systems' => 'erp-solutions',
+        'crm-systems' => 'crm-platforms',
+        'inventory-hrm' => 'hr-inventory-management',
+        'billing-invoicing' => 'billing-accounting-systems',
+        'school-hospital-software' => 'industry-specific-software',
+        'api-development' => 'rest-api-development',
+        'cloud-hosting-setup' => 'cloud-deployment-services',
+        'database-design' => 'database-architecture',
+        'server-deployment' => 'server-management',
+        'devops-automation' => 'devops-cicd',
+        'ai-chatbot-integration' => 'ai-chatbots',
+        'automation-systems' => 'business-process-automation',
+        'saas-product-development' => 'saas-development',
+        'api-integrations' => 'ai-integrations',
+        'data-analytics-dashboards' => 'analytics-business-intelligence',
+        'seo' => 'search-engine-optimization',
+        'google-ads-ppc' => 'paid-advertising-google-meta',
+        'social-media-marketing' => 'social-media-marketing-growth',
+        'content-marketing' => 'content-strategy',
+        'email-campaigns' => 'email-marketing-automation',
+    ];
+
+    if (isset($aliases[$service])) {
+        $service = $aliases[$service];
+    }
+
     $pages = config('service_pages.pages');
     abort_unless(array_key_exists($service, $pages), 404);
 
@@ -62,8 +104,8 @@ $showServicePage = function (string $service) {
 };
 
 Route::view('/work', 'work')->name('work');
-Route::get('/logo-design', fn () => $showServicePage('logo-design'))->name('logo.design');
-Route::get('/brand-identity', fn () => $showServicePage('brand-identity'))->name('brand.identity');
+Route::get('/logo-design', fn () => $showServicePage('logo-visual-identity'))->name('logo.design');
+Route::get('/brand-identity', fn () => $showServicePage('brand-guidelines'))->name('brand.identity');
 Route::get('/services/{service}', $showServicePage)->name('services.show');
 
 // Public Blog Routes
