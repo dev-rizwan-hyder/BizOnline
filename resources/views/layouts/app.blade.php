@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <!-- Preload default-visible portfolio images (Software & ERP tab) -->
+    <link rel="preload" as="image" href="{{ asset('software/denverdiscountcomputers.com_admin_dashboard.png') }}">
+    <link rel="preload" as="image" href="{{ asset('software/denverdiscountcomputers.com_admin_inventory.png') }}">
+    <link rel="preload" as="image" href="{{ asset('software/denverdiscountcomputers.com_admin_expenses.png') }}">
+    <link rel="preload" as="image" href="{{ asset('software/denverdiscountcomputers.com_admin_policies_type=company.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
     <script>
       tailwind.config = {
