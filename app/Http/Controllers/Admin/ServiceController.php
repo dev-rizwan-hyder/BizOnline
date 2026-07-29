@@ -55,6 +55,9 @@ class ServiceController extends Controller
         // Load work with fallback
         $work = ($dbService && $dbService->work) ? $dbService->work : ($page['work'] ?? []);
 
+        // Load features with fallback
+        $features = ($dbService && $dbService->features) ? $dbService->features : ($page['features'] ?? []);
+
         // Load meta fields with fallback
         $meta = ($dbService && $dbService->meta) ? $dbService->meta : [];
         $meta['badge'] = $meta['badge'] ?? ($category['badge'] ?? 'DIGITAL PERFORMANCE LAB');
@@ -83,6 +86,7 @@ class ServiceController extends Controller
             'custom_image' => $dbService ? $dbService->image : null,
             'packages' => $packages,
             'work' => $work,
+            'features' => $features,
             'meta' => $meta,
         ];
 
@@ -122,6 +126,12 @@ class ServiceController extends Controller
             'meta.step_02_text' => 'nullable|string|max:1000',
             'meta.step_03_title' => 'nullable|string|max:255',
             'meta.step_03_text' => 'nullable|string|max:1000',
+
+            // Validate Features
+            'features' => 'nullable|array',
+            'features.*.icon' => 'required_with:features|string|max:255',
+            'features.*.title' => 'required_with:features|string|max:255',
+            'features.*.text' => 'required_with:features|string|max:1000',
 
             // Validate Packages
             'packages' => 'required|array|size:3',
@@ -165,6 +175,20 @@ class ServiceController extends Controller
         // Process Meta Fields
         $metaInput = $request->input('meta', []);
         $dbService->meta = $metaInput;
+
+        // Process Features
+        $inputFeatures = $request->input('features', []);
+        $finalFeatures = [];
+        foreach ($inputFeatures as $feature) {
+            if (!empty($feature['title']) && !empty($feature['text'])) {
+                $finalFeatures[] = [
+                    'icon' => $feature['icon'] ?? 'ri-zap-line',
+                    'title' => $feature['title'],
+                    'text' => $feature['text'],
+                ];
+            }
+        }
+        $dbService->features = $finalFeatures;
 
         // Process Packages
         $inputPackages = $request->input('packages', []);

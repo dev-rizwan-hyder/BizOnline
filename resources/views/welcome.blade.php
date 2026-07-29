@@ -26,8 +26,7 @@
                     <span class="w-2 h-2 rounded-full bg-cyan-300"></span>
                     AI Powered Digital Solutions
                 </p>
-                <h2 class="text-4xl sm:text-5xl lg:text-5xl font-bold leading-[1.05] mb-6">Crafting Bold <br> Digital
-                    Presence <br> For Brands <br> That Want To Lead</h2>
+                <h1 class="text-4xl sm:text-5xl lg:text-5xl font-bold leading-[1.05] mb-6">Professional Web & Software Development for Digital Growth</h1>
                 <p class="text-base sm:text-lg text-blue-100/90 leading-relaxed mb-9 max-w-2xl">We combine strategy, premium
                     design, and <br> high-performance development to deliver <br> portfolio-grade websites that look exceptional and <br>
                     convert visitors into clients.</p>
@@ -204,11 +203,11 @@
                         <span class="w-2 h-2 rounded-full bg-cyan-300 animate-pulse"></span>
                         Complementary Expertise
                     </p>
-                    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6">
-                        Providing a wide variety of services beyond our main offering is one way we enrich our customers' experiences.
-                    </h3>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.15] mb-6">
+                        Comprehensive Digital Services Beyond Web Development
+                    </h2>
                     <p class="text-base sm:text-lg text-blue-100/85 leading-relaxed mb-8 max-w-xl">
-                        While our primary service at Bizz Online is website design and development, we also provide a number of complementary services that give your website that extra something special it needs to succeed. You can get real benefits for your company whether you use these services alone or in tandem with others.
+                        While our primary service at Biz Tech Solution is website design and development, we also provide a number of complementary services that give your website that extra something special it needs to succeed. You can get real benefits for your company whether you use these services alone or in tandem with others.
                     </p>
                     <div>
                         <a href="#contact"
@@ -258,17 +257,9 @@
                             <i class="ri-macbook-line text-xl sm:text-2xl"></i>
                         </button>
 
-                        <!-- Node 2: Bottom-Right (Digital Marketing) -->
+                        <!-- Node 2: Bottom-Left (Logo & Brand Design) -->
                         <button type="button" 
                                 data-wheel-index="2"
-                                class="wheel-node-btn absolute top-[86%] left-[86%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-20 focus:outline-none"
-                                aria-label="Digital Marketing">
-                            <i class="ri-megaphone-line text-xl sm:text-2xl"></i>
-                        </button>
-
-                        <!-- Node 3: Bottom-Left (Logo & Brand Design) -->
-                        <button type="button" 
-                                data-wheel-index="3"
                                 class="wheel-node-btn absolute top-[86%] left-[14%] -translate-x-1/2 -translate-y-1/2 w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 z-20 focus:outline-none"
                                 aria-label="Logo Design">
                             <i class="ri-palette-line text-xl sm:text-2xl"></i>
@@ -286,23 +277,18 @@
         const wheelData = [
           {
             kicker: "OUR SERVICES",
-            title: "Software & ERP Development",
-            desc: "We engineer customized software applications and enterprise ERP solutions tailored to automate workflows, streamline operations, and boost productivity."
+            title: "Custom ERP & Software Solutions",
+            desc: "We engineer enterprise-grade software and ERP systems tailored to automate workflows, streamline operations, and maximize productivity."
           },
           {
             kicker: "OUR SERVICES",
-            title: "Website Development",
-            desc: "We develop customized websites for all types of organizations. We tailor each website with specific layout and content to make it appealing to the relevant market."
+            title: "Professional Website Design & Development",
+            desc: "We create custom, responsive websites optimized for conversions. Each site is tailored to your industry with compelling layouts that engage your target market."
           },
           {
             kicker: "OUR SERVICES",
-            title: "Digital Marketing",
-            desc: "We build result-driven marketing campaigns, social media strategies, and targeted lead funnels that maximize your ROI and expand your market reach."
-          },
-          {
-            kicker: "OUR SERVICES",
-            title: "Logo Design",
-            desc: "We design perfect and unique logos for our clients. Our logos are customized and stand out due to their designs, attention to detail and color selection."
+            title: "Logo & Brand Identity Design",
+            desc: "We create distinctive, memorable brand identities and logos. Each design reflects your brand essence with attention to detail, strategic color selection, and professional aesthetics."
           }
         ];
 
@@ -441,9 +427,9 @@
                         <span class="w-2.5 h-2.5 rounded-full bg-cyan-300 animate-ping"></span>
                         Expert in Web Page Layout
                     </p>
-                    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] mb-6 drop-shadow-md">
-                        Allow us to assist you in developing a web presence.
-                    </h3>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] mb-6 drop-shadow-md">
+                        Responsive Web Design & Development for All Devices
+                    </h2>
                     <p class="text-base sm:text-lg text-purple-100/90 leading-relaxed mb-9 max-w-xl">
                         Our web development team is here to assist you in reaching your business goals through the creation of an interesting and functional website.
                     </p>
@@ -689,11 +675,11 @@
             <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] text-cyan-300 mb-4 shadow-[0_0_15px_rgba(244,114,182,0.2)]">
                 THE REMARKABLE PORTFOLIO OF OURS
             </p>
-            <h3 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
-                See it. You Must Have Faith
-            </h3>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 tracking-tight">
+                Our Professional Portfolio: Web, Software & Digital Projects
+            </h2>
             <p class="text-blue-100/85 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed mb-6">
-                Bizz Online counts itself incredibly fortunate to have worked with such wonderful customers and provided them with excellent service. In order to provide the greatest possible experience for the user, we have created stunning designs and dynamic layouts.
+                Explore our diverse portfolio of completed projects: custom software solutions, responsive websites, e-commerce platforms, brand design, and digital marketing campaigns that delivered measurable results.
             </p>
             
             <!-- Hover-to-scroll tip -->
@@ -761,7 +747,7 @@
                         <p class="text-white font-bold text-sm leading-tight">Business Management ERP</p>
                         <p class="text-cyan-300/80 text-[10px] font-medium mt-0.5">Enterprise Resource Planning</p>
                     </div>
-                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_dashboard.png') }}" alt="ERP Software Dashboard" class="portfolio-scroll-img" loading="eager" fetchpriority="high">
+                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_dashboard.png') }}" alt="ERP Software Dashboard" class="portfolio-scroll-img" loading="lazy" fetchpriority="low">
                 </div>
 
                 <!-- SOFTWARE & ERP ITEM 2 -->
@@ -775,7 +761,7 @@
                         <p class="text-white font-bold text-sm leading-tight">Inventory Management System</p>
                         <p class="text-cyan-300/80 text-[10px] font-medium mt-0.5">Inventory & Stock Control</p>
                     </div>
-                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_inventory.png') }}" alt="Admin Inventory Management" class="portfolio-scroll-img" loading="eager" fetchpriority="high">
+                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_inventory.png') }}" alt="Admin Inventory Management" class="portfolio-scroll-img" loading="lazy" fetchpriority="low">
                 </div>
 
                 <!-- SOFTWARE & ERP ITEM 3 -->
@@ -789,7 +775,7 @@
                         <p class="text-white font-bold text-sm leading-tight">Expense Tracker Pro</p>
                         <p class="text-cyan-300/80 text-[10px] font-medium mt-0.5">Finance & Expense Management</p>
                     </div>
-                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_expenses.png') }}" alt="Admin Expense Tracker" class="portfolio-scroll-img" loading="eager" fetchpriority="high">
+                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_expenses.png') }}" alt="Admin Expense Tracker" class="portfolio-scroll-img" loading="lazy" fetchpriority="low">
                 </div>
 
                 <!-- SOFTWARE & ERP ITEM 4 -->
@@ -803,7 +789,7 @@
                         <p class="text-white font-bold text-sm leading-tight">Policy & Compliance Suite</p>
                         <p class="text-cyan-300/80 text-[10px] font-medium mt-0.5">HR Policy Management System</p>
                     </div>
-                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_policies_type=company.png') }}" alt="Admin Policies Management" class="portfolio-scroll-img" loading="eager" fetchpriority="high">
+                    <img src="{{ asset('software/denverdiscountcomputers.com_admin_policies_type=company.png') }}" alt="Admin Policies Management" class="portfolio-scroll-img" loading="lazy" fetchpriority="low">
                 </div>
 
                 <!-- WEBSITE DESIGN ITEM 1: Solent Motors -->
@@ -1150,125 +1136,182 @@
         <div class="absolute bottom-20 right-14 w-36 h-36 rounded-3xl border border-indigo-300/30 bg-gradient-to-tr from-indigo-500/15 via-purple-500/10 to-transparent backdrop-blur-md rotate-45 animate-bg-shape-1 pointer-events-none hidden md:block shadow-[0_0_25px_rgba(99,102,241,0.2)]"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-gradient-to-r from-cyan-400/10 via-indigo-500/10 to-purple-600/10 blur-3xl pointer-events-none"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14">
+            <div class="text-center mb-16">
                 <p
-                    class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/35 bg-[#0e235f]/75 text-[11px] font-semibold tracking-[0.18em] uppercase text-cyan-100 mb-5">
-                    Why Choose Bizz Online?</p>
-                <h3 class="text-4xl sm:text-5xl font-bold text-white mb-4">Why <span class="text-cyan-300">Choose</span>
-                    Bizz Online?</h3>
-                <p class="text-blue-100/90 text-lg max-w-3xl mx-auto">We deliver comprehensive digital solutions with
-                    proven results</p>
-                <div class="mt-5 flex items-center justify-center gap-3">
-                    <span class="w-20 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent"></span>
-                    <span class="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(85,214,255,0.9)]"></span>
-                    <span class="w-20 h-px bg-gradient-to-r from-transparent via-indigo-300/70 to-transparent"></span>
+                    class="inline-flex items-center px-4 py-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-md text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan-200 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                    Why Choose Biz Tech Solution?
+                </p>
+                <h1 class="text-5xl sm:text-6xl lg:text-6xl font-black text-white mb-5 leading-[1.1]">
+                    Why Choose Biz Tech Solution for Your Digital Success
+                </h1>
+                <p class="text-blue-100/85 text-lg sm:text-xl max-w-4xl mx-auto leading-relaxed font-light">
+                    With over 5 years of expertise, we've helped 150+ businesses achieve their digital goals through innovative solutions, dedicated support, and proven results.
+                </p>
+                <div class="mt-8 flex items-center justify-center gap-4">
+                    <span class="w-16 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent"></span>
+                    <span class="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-300 to-indigo-300 shadow-[0_0_12px_rgba(56,189,248,0.8)]"></span>
+                    <span class="w-16 h-px bg-gradient-to-r from-transparent via-indigo-300/70 to-transparent"></span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Main Features Grid with Enhanced Design -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Card 1: Experience -->
                 <article
-                    class="hover-glow-card relative rounded-2xl border border-cyan-300/25 bg-[#0d1d51]/75 p-6 text-center shadow-[0_0_22px_rgba(90,118,255,0.22)]">
-                    <span
-                        class="absolute -top-4 left-4 w-10 h-10 rounded-full bg-gradient-to-br from-cyan-300 to-indigo-500 text-white text-sm font-bold flex items-center justify-center shadow-[0_0_18px_rgba(84,178,255,0.55)]">01</span>
-                    <div
-                        class="w-20 h-20 mx-auto mb-5 rounded-full border border-cyan-300/30 bg-[#132862]/75 flex items-center justify-center shadow-[0_0_20px_rgba(80,170,255,0.28)]">
-                        <i class="ri-award-line text-4xl text-cyan-200"></i>
+                    class="group relative rounded-3xl border border-cyan-300/30 bg-gradient-to-br from-[#0f2462]/90 via-[#0d1d51]/85 to-[#0a1847]/80 p-8 text-left transition-all duration-500 hover:-translate-y-2 hover:border-cyan-300/60 hover:shadow-[0_20px_45px_rgba(56,189,248,0.25)] backdrop-blur-md">
+                    <!-- Gradient Line Top -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-300 via-blue-300 to-transparent rounded-t-3xl"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative mb-6">
+                        <div class="absolute -top-3 -left-3 w-24 h-24 bg-cyan-400/10 rounded-full blur-xl group-hover:bg-cyan-400/20 transition-all duration-500"></div>
+                        <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/30 to-cyan-400/10 border border-cyan-300/40 flex items-center justify-center group-hover:border-cyan-300/80 transition-all duration-300">
+                            <i class="ri-award-line text-3xl text-cyan-300"></i>
+                        </div>
                     </div>
-                    <h4 class="text-4xl leading-none font-bold text-white mb-3">5+ Years Experience</h4>
-                    <p class="text-blue-100/80 text-sm leading-relaxed">Proven track record with 200+ successful projects
-                        delivered across various industries.</p>
-                    <span
-                        class="mt-5 block h-0.5 w-full bg-gradient-to-r from-cyan-400/0 via-cyan-300/70 to-cyan-400/0"></span>
+
+                    <span class="inline-block px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-300/30 text-cyan-300 text-xs font-bold tracking-wider mb-4">EXPERIENCE</span>
+                    
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">5+ Years of Proven Excellence</h3>
+                    <p class="text-blue-100/80 text-sm leading-relaxed mb-6">200+ successful projects delivered across diverse industries with proven results and client satisfaction.</p>
+                    
+                    <!-- Stats Row -->
+                    <div class="pt-4 border-t border-cyan-300/20">
+                        <p class="text-cyan-300 font-semibold text-lg">200+</p>
+                        <p class="text-blue-100/70 text-xs">Projects Delivered</p>
+                    </div>
                 </article>
 
+                <!-- Card 2: Expert Team -->
                 <article
-                    class="hover-glow-card relative rounded-2xl border border-cyan-300/25 bg-[#0d1d51]/75 p-6 text-center shadow-[0_0_22px_rgba(90,118,255,0.22)]">
-                    <span
-                        class="absolute -top-4 left-4 w-10 h-10 rounded-full bg-gradient-to-br from-indigo-300 to-violet-500 text-white text-sm font-bold flex items-center justify-center shadow-[0_0_18px_rgba(124,130,255,0.6)]">02</span>
-                    <div
-                        class="w-20 h-20 mx-auto mb-5 rounded-full border border-indigo-300/35 bg-[#1c2462]/75 flex items-center justify-center shadow-[0_0_20px_rgba(124,130,255,0.3)]">
-                        <i class="ri-team-line text-4xl text-indigo-200"></i>
+                    class="group relative rounded-3xl border border-indigo-300/30 bg-gradient-to-br from-[#1a2d78]/90 via-[#0f1f56]/85 to-[#0a1847]/80 p-8 text-left transition-all duration-500 hover:-translate-y-2 hover:border-indigo-300/60 hover:shadow-[0_20px_45px_rgba(99,102,241,0.25)] backdrop-blur-md">
+                    <!-- Gradient Line Top -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-300 via-purple-300 to-transparent rounded-t-3xl"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative mb-6">
+                        <div class="absolute -top-3 -left-3 w-24 h-24 bg-indigo-400/10 rounded-full blur-xl group-hover:bg-indigo-400/20 transition-all duration-500"></div>
+                        <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500/30 to-indigo-400/10 border border-indigo-300/40 flex items-center justify-center group-hover:border-indigo-300/80 transition-all duration-300">
+                            <i class="ri-team-line text-3xl text-indigo-300"></i>
+                        </div>
                     </div>
-                    <h4 class="text-4xl leading-none font-bold text-white mb-3">Expert Team</h4>
-                    <p class="text-blue-100/80 text-sm leading-relaxed">Certified professionals across all digital
-                        disciplines dedicated to your success.</p>
-                    <span
-                        class="mt-5 block h-0.5 w-full bg-gradient-to-r from-violet-400/0 via-violet-300/70 to-violet-400/0"></span>
+
+                    <span class="inline-block px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-300/30 text-indigo-300 text-xs font-bold tracking-wider mb-4">EXPERTISE</span>
+                    
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">Expert Team & Certified Professionals</h3>
+                    <p class="text-blue-100/80 text-sm leading-relaxed mb-6">Expert team across design, development, marketing & strategy dedicated to your success.</p>
+                    
+                    <!-- Stats Row -->
+                    <div class="pt-4 border-t border-indigo-300/20">
+                        <p class="text-indigo-300 font-semibold text-lg">15+</p>
+                        <p class="text-blue-100/70 text-xs">Specialists & Experts</p>
+                    </div>
                 </article>
 
+                <!-- Card 3: 24/7 Support -->
                 <article
-                    class="hover-glow-card relative rounded-2xl border border-cyan-300/25 bg-[#0d1d51]/75 p-6 text-center shadow-[0_0_22px_rgba(90,118,255,0.22)]">
-                    <span
-                        class="absolute -top-4 left-4 w-10 h-10 rounded-full bg-gradient-to-br from-cyan-300 to-blue-500 text-white text-sm font-bold flex items-center justify-center shadow-[0_0_18px_rgba(84,178,255,0.55)]">03</span>
-                    <div
-                        class="w-20 h-20 mx-auto mb-5 rounded-full border border-cyan-300/30 bg-[#132862]/75 flex items-center justify-center shadow-[0_0_20px_rgba(80,170,255,0.28)]">
-                        <i class="ri-customer-service-2-line text-4xl text-cyan-200"></i>
+                    class="group relative rounded-3xl border border-blue-300/30 bg-gradient-to-br from-[#0f2462]/90 via-[#0d1d51]/85 to-[#0a1847]/80 p-8 text-left transition-all duration-500 hover:-translate-y-2 hover:border-blue-300/60 hover:shadow-[0_20px_45px_rgba(59,130,246,0.25)] backdrop-blur-md">
+                    <!-- Gradient Line Top -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-300 via-cyan-300 to-transparent rounded-t-3xl"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative mb-6">
+                        <div class="absolute -top-3 -left-3 w-24 h-24 bg-blue-400/10 rounded-full blur-xl group-hover:bg-blue-400/20 transition-all duration-500"></div>
+                        <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/30 to-blue-400/10 border border-blue-300/40 flex items-center justify-center group-hover:border-blue-300/80 transition-all duration-300">
+                            <i class="ri-customer-service-2-line text-3xl text-blue-300"></i>
+                        </div>
                     </div>
-                    <h4 class="text-4xl leading-none font-bold text-white mb-3">24/7 Support</h4>
-                    <p class="text-blue-100/80 text-sm leading-relaxed">Round-the-clock assistance for all your needs. We
-                        are always here to help.</p>
-                    <span
-                        class="mt-5 block h-0.5 w-full bg-gradient-to-r from-cyan-400/0 via-blue-300/70 to-cyan-400/0"></span>
+
+                    <span class="inline-block px-3 py-1 rounded-full bg-blue-500/15 border border-blue-300/30 text-blue-300 text-xs font-bold tracking-wider mb-4">SUPPORT</span>
+                    
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">24/7 Support & Dedicated Assistance</h3>
+                    <p class="text-blue-100/80 text-sm leading-relaxed mb-6">24/7 dedicated assistance whenever you need us. Your success is our priority always.</p>
+                    
+                    <!-- Stats Row -->
+                    <div class="pt-4 border-t border-blue-300/20">
+                        <p class="text-blue-300 font-semibold text-lg">24/7</p>
+                        <p class="text-blue-100/70 text-xs">Availability Guaranteed</p>
+                    </div>
                 </article>
 
+                <!-- Card 4: Competitive Pricing -->
                 <article
-                    class="hover-glow-card relative rounded-2xl border border-cyan-300/25 bg-[#0d1d51]/75 p-6 text-center shadow-[0_0_22px_rgba(90,118,255,0.22)]">
-                    <span
-                        class="absolute -top-4 left-4 w-10 h-10 rounded-full bg-gradient-to-br from-violet-300 to-fuchsia-500 text-white text-sm font-bold flex items-center justify-center shadow-[0_0_18px_rgba(176,120,255,0.62)]">04</span>
-                    <div
-                        class="w-20 h-20 mx-auto mb-5 rounded-full border border-violet-300/35 bg-[#242064]/75 flex items-center justify-center shadow-[0_0_20px_rgba(176,120,255,0.3)]">
-                        <i class="ri-money-dollar-circle-line text-4xl text-violet-200"></i>
+                    class="group relative rounded-3xl border border-purple-300/30 bg-gradient-to-br from-[#1c2d68]/90 via-[#131d54]/85 to-[#0a1847]/80 p-8 text-left transition-all duration-500 hover:-translate-y-2 hover:border-purple-300/60 hover:shadow-[0_20px_45px_rgba(168,85,247,0.25)] backdrop-blur-md">
+                    <!-- Gradient Line Top -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-300 via-fuchsia-300 to-transparent rounded-t-3xl"></div>
+                    
+                    <!-- Icon Container -->
+                    <div class="relative mb-6">
+                        <div class="absolute -top-3 -left-3 w-24 h-24 bg-purple-400/10 rounded-full blur-xl group-hover:bg-purple-400/20 transition-all duration-500"></div>
+                        <div class="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/30 to-purple-400/10 border border-purple-300/40 flex items-center justify-center group-hover:border-purple-300/80 transition-all duration-300">
+                            <i class="ri-money-dollar-circle-line text-3xl text-purple-300"></i>
+                        </div>
                     </div>
-                    <h4 class="text-4xl leading-none font-bold text-white mb-3">Competitive Pricing</h4>
-                    <p class="text-blue-100/80 text-sm leading-relaxed">Best value packages with transparent pricing and no
-                        hidden costs.</p>
-                    <span
-                        class="mt-5 block h-0.5 w-full bg-gradient-to-r from-fuchsia-400/0 via-violet-300/70 to-fuchsia-400/0"></span>
+
+                    <span class="inline-block px-3 py-1 rounded-full bg-purple-500/15 border border-purple-300/30 text-purple-300 text-xs font-bold tracking-wider mb-4">PRICING</span>
+                    
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-3 leading-tight">Transparent & Competitive Pricing</h3>
+                    <p class="text-blue-100/80 text-sm leading-relaxed mb-6">Best value packages with clear pricing structure and zero hidden fees ever.</p>
+                    
+                    <!-- Stats Row -->
+                    <div class="pt-4 border-t border-purple-300/20">
+                        <p class="text-purple-300 font-semibold text-lg">Flexible</p>
+                        <p class="text-blue-100/70 text-xs">Budget Options</p>
+                    </div>
                 </article>
             </div>
 
-            <div
-                class="grid grid-cols-2 lg:grid-cols-4 gap-4 rounded-2xl border border-cyan-300/25 bg-[#0a1847]/70 p-4 shadow-[0_0_24px_rgba(66,121,255,0.22)] mb-8">
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-full bg-cyan-400/20 text-cyan-200 flex items-center justify-center"><i
-                            class="ri-briefcase-4-line"></i></div>
-                    <div>
-                        <p class="text-white font-semibold text-sm">200+</p>
-                        <p class="text-blue-100/70 text-xs">Projects Completed</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-full bg-indigo-400/20 text-indigo-200 flex items-center justify-center">
-                        <i class="ri-emotion-happy-line"></i>
-                    </div>
-                    <div>
-                        <p class="text-white font-semibold text-sm">150+</p>
-                        <p class="text-blue-100/70 text-xs">Happy Clients</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-full bg-cyan-400/20 text-cyan-200 flex items-center justify-center"><i
-                            class="ri-trophy-line"></i></div>
-                    <div>
-                        <p class="text-white font-semibold text-sm">98%</p>
-                        <p class="text-blue-100/70 text-xs">Client Satisfaction</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-3">
-                    <div class="w-10 h-10 rounded-full bg-violet-400/20 text-violet-200 flex items-center justify-center">
-                        <i class="ri-line-chart-line"></i>
-                    </div>
-                    <div>
-                        <p class="text-white font-semibold text-sm">5+</p>
-                        <p class="text-blue-100/70 text-xs">Years of Excellence</p>
+            <!-- Stats & Achievements Box -->
+            <div class="mb-12">
+                <div class="rounded-3xl border border-cyan-300/30 bg-gradient-to-br from-[#0a1847]/80 via-[#0d1f56]/75 to-[#050f2e]/85 p-8 sm:p-10 shadow-[0_0_30px_rgba(56,189,248,0.15)] backdrop-blur-md">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+                        <!-- Stat 1 -->
+                        <div class="text-center group">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/25 to-cyan-400/10 border border-cyan-300/40 mb-3 group-hover:border-cyan-300/80 transition-all">
+                                <i class="ri-briefcase-4-line text-2xl text-cyan-300"></i>
+                            </div>
+                            <p class="text-3xl sm:text-4xl font-black text-transparent bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text mb-1">200+</p>
+                            <p class="text-blue-100/70 text-xs sm:text-sm font-medium">Projects Completed</p>
+                        </div>
+                        
+                        <!-- Stat 2 -->
+                        <div class="text-center group">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/25 to-indigo-400/10 border border-indigo-300/40 mb-3 group-hover:border-indigo-300/80 transition-all">
+                                <i class="ri-emotion-happy-line text-2xl text-indigo-300"></i>
+                            </div>
+                            <p class="text-3xl sm:text-4xl font-black text-transparent bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text mb-1">150+</p>
+                            <p class="text-blue-100/70 text-xs sm:text-sm font-medium">Happy Clients</p>
+                        </div>
+                        
+                        <!-- Stat 3 -->
+                        <div class="text-center group">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-500/25 to-yellow-400/10 border border-yellow-300/40 mb-3 group-hover:border-yellow-300/80 transition-all">
+                                <i class="ri-trophy-line text-2xl text-yellow-300"></i>
+                            </div>
+                            <p class="text-3xl sm:text-4xl font-black text-transparent bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text mb-1">98%</p>
+                            <p class="text-blue-100/70 text-xs sm:text-sm font-medium">Client Satisfaction</p>
+                        </div>
+                        
+                        <!-- Stat 4 -->
+                        <div class="text-center group">
+                            <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/25 to-purple-400/10 border border-purple-300/40 mb-3 group-hover:border-purple-300/80 transition-all">
+                                <i class="ri-line-chart-line text-2xl text-purple-300"></i>
+                            </div>
+                            <p class="text-3xl sm:text-4xl font-black text-transparent bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text mb-1">5+</p>
+                            <p class="text-blue-100/70 text-xs sm:text-sm font-medium">Years of Excellence</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Call-to-Action Section -->
             <div class="text-center">
                 <a href="#contact"
-                    class="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 text-white font-semibold shadow-[0_0_20px_rgba(129,97,255,0.45)] hover:brightness-110 transition-all">Let's
-                    Build Something Amazing <i class="ri-arrow-right-line"></i></a>
+                    class="inline-flex items-center gap-3 px-9 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 text-white font-bold text-lg shadow-[0_15px_35px_rgba(56,189,248,0.4)] hover:shadow-[0_20px_50px_rgba(56,189,248,0.5)] hover:scale-105 transition-all duration-300">
+                    <span>Start Your Project Today</span>
+                    <i class="ri-arrow-right-line text-xl"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -1287,8 +1330,8 @@
                 <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/35 bg-[#111a4b]/70 text-[11px] font-semibold uppercase tracking-[0.22em] text-cyan-100 mb-4">
                     Client Testimonials
                 </p>
-                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">What Our Clients Say</h3>
-                <p class="text-lg text-blue-100/85 max-w-3xl mx-auto">Real success stories from businesses across Pakistan</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Client Success Stories & Case Studies</h2>
+                <p class="text-lg text-blue-100/85 max-w-3xl mx-auto">Real results and proven success from businesses across Pakistan</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="rounded-2xl border border-cyan-300/25 bg-[#0f1f56]/85 p-8 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_0_25px_rgba(96,157,255,0.28)] shadow-lg">
@@ -1301,7 +1344,7 @@
                             <p class="text-cyan-200/80 text-xs font-medium">Founder, Lahore Electronics</p>
                         </div>
                     </div>
-                    <p class="text-blue-100/90 text-sm leading-relaxed mb-5">"Bizz Online helped us build a powerful online store. Within a few months, our customer base grew significantly, and our online orders increased by 250%."</p>
+                    <p class="text-blue-100/90 text-sm leading-relaxed mb-5">"Biz Tech Solution helped us build a powerful online store. Within a few months, our customer base grew significantly, and our online orders increased by 250%."</p>
                     <div class="flex text-yellow-300 gap-1 text-sm">
                         <i class="ri-star-fill"></i>
                         <i class="ri-star-fill"></i>
@@ -1372,8 +1415,8 @@
                 <p
                     class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/35 bg-[#0f225f]/70 text-[11px] font-semibold tracking-[0.18em] uppercase text-cyan-100 mb-4">
                     Our Services</p>
-                <h3 class="text-4xl md:text-5xl font-bold text-white mb-3">We Build Digital Solutions</h3>
-                <p class="text-blue-100/90 max-w-xl mx-auto text-lg leading-relaxed">Powerful, scalable and result-driven services to grow your business online.</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-3">Complete Digital Solutions: Web, Software & Marketing Services</h2>
+                <p class="text-blue-100/90 max-w-xl mx-auto text-lg leading-relaxed">Comprehensive, scalable, and results-driven services to accelerate your business growth online.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -1490,9 +1533,8 @@
         <div class="absolute top-12 right-12 w-32 h-32 rounded-3xl border border-indigo-300/25 bg-indigo-500/10 backdrop-blur-sm rotate-45 animate-bg-shape-1 pointer-events-none hidden md:block"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">Ready to Start Your Project?</h3>
-                <p class="text-lg text-blue-100/95 max-w-3xl mx-auto">Get in touch today for a free consultation and
-                    discover how we can help grow your business.</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Get a Free Consultation: Start Your Digital Project Today</h2>
+                <p class="text-lg text-blue-100/95 max-w-3xl mx-auto">Contact our team to discuss your project requirements and receive a personalized proposal tailored to your business goals.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">

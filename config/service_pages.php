@@ -134,28 +134,6 @@ return [
                 ['name' => 'AI Product Innovation', 'price' => '$3,499+', 'tag' => 'Scale', 'features' => ['SaaS planning', 'AI Chatbot & RAG setup', 'Analytics layer', 'Ongoing iteration']],
             ],
         ],
-        'marketing' => [
-            'label' => 'Growth Marketing',
-            'badge' => 'Growth Service',
-            'icon' => 'ri-megaphone-line',
-            'image' => 'contact_us.png',
-            'hero_kicker' => 'Drive traffic, leads, and measurable business growth',
-            'hero_title' => 'Campaign systems that attract, convert, and keep improving.',
-            'hero_text' => 'We combine SEO, paid campaigns, social content, and email flows into practical growth activity your business can measure.',
-            'work_images' => ['contact_us.png', 'portfolio_section.png', 'hero.png'],
-            'process' => ['Research', 'Plan', 'Launch', 'Measure', 'Optimize'],
-            'metrics' => [
-                ['value' => '3X', 'label' => 'Reach Goal'],
-                ['value' => 'SEO', 'label' => 'Ready'],
-                ['value' => 'PPC', 'label' => 'Ready'],
-                ['value' => '24/7', 'label' => 'Support'],
-            ],
-            'packages' => [
-                ['name' => 'Marketing Starter', 'price' => '$299', 'tag' => 'Launch', 'features' => ['Audit and plan', 'Keyword direction', 'Basic content plan', 'Monthly reporting']],
-                ['name' => 'Growth Campaign', 'price' => '$799', 'tag' => 'Popular', 'features' => ['SEO and ads setup', 'Campaign creatives', 'Landing page guidance', 'Performance reports']],
-                ['name' => 'Scale Marketing', 'price' => '$1,499+', 'tag' => 'Scale', 'features' => ['Multi-channel strategy', 'Content calendar', 'Conversion tracking', 'Optimization sprints']],
-            ],
-        ],
     ],
 
     'pages' => [
@@ -661,86 +639,5 @@ return [
             ],
         ],
 
-        // Category 7: Growth Marketing
-        'search-engine-optimization' => [
-            'category' => 'marketing',
-            'title' => 'Search Engine Optimization',
-            'headline' => 'Rank #1 On Google & Capture Consistent Organic Customer Traffic',
-            'intro' => 'We execute complete SEO strategies covering keyword research, technical cleanup, on-page optimization, and authority link building.',
-            'features' => [
-                ['icon' => 'ri-search-line', 'title' => 'High-Intent Keyword Strategy', 'text' => 'Target keywords your prospective customers search when ready to purchase.'],
-                ['icon' => 'ri-file-search-line', 'title' => 'On-Page & Content Tuning', 'text' => 'Optimize titles, meta tags, headings, internal links, and content hierarchy.'],
-                ['icon' => 'ri-speed-up-line', 'title' => 'Technical SEO & Speed Fixes', 'text' => 'Fix broken links, improve mobile usability, fix indexing errors, and boost speed.'],
-            ],
-            'work' => [
-                ['label' => 'SEO', 'name' => 'Local Service Business SEO', 'text' => 'Ranked #1 for 15 target local keywords in 90 days.'],
-                ['label' => 'E-Commerce', 'name' => 'Organic Store Traffic Push', 'text' => 'Increased organic monthly search traffic from 2k to 28k visitors.'],
-                ['label' => 'B2B', 'name' => 'Corporate Blog Keyword Strategy', 'text' => 'Generated 250+ monthly inbound organic sales leads.'],
-            ],
-        ],
-        'paid-advertising-google-meta' => [
-            'category' => 'marketing',
-            'title' => 'Paid Advertising (Google & Meta)',
-            'headline' => 'High-ROI Google Search Ads, Meta Ads, & Retargeting Campaigns',
-            'intro' => 'We create, manage, and scale paid search and social campaigns engineered to generate sales leads and customer purchases.',
-            'features' => [
-                ['icon' => 'ri-advertisement-line', 'title' => 'Google Search & Shopping Ads', 'text' => 'Target active search buyers with laser-focused ad groups, keywords, and extensions.'],
-                ['icon' => 'ri-focus-3-line', 'title' => 'Meta (FB & IG) Video & Carousel Ads', 'text' => 'Scroll-stopping visual ad creatives paired with precise interest and lookalike audiences.'],
-                ['icon' => 'ri-funds-line', 'title' => 'Conversion Tracking & ROAS Tuning', 'text' => 'Setup Meta Pixel, CAPI, and Google Tag Manager to track true cost per acquisition.'],
-            ],
-            'work' => [
-                ['label' => 'PPC', 'name' => 'Google Search Lead Campaign', 'text' => 'Generated 140 qualified inquiries at $12 CPA for service firm.'],
-                ['label' => 'Meta', 'name' => 'E-Commerce Meta Ad Scaling', 'text' => 'Achieved 4.2X ROAS scaling monthly ad budget to $15k.'],
-                ['label' => 'Retargeting', 'name' => 'Cart Abandonment Ad Funnel', 'text' => 'Recovered 22% of abandoned carts via dynamic Facebook ads.'],
-            ],
-        ],
-        'social-media-marketing-growth' => [
-            'category' => 'marketing',
-            'title' => 'Social Media Marketing',
-            'headline' => 'Build A Loyal Audience & Transform Social Channels Into Sales Engines',
-            'intro' => 'We manage Instagram, Facebook, LinkedIn, and TikTok channels with strategic content calendars, visual design, and community growth.',
-            'features' => [
-                ['icon' => 'ri-calendar-todo-line', 'title' => 'Monthly Content Calendar', 'text' => 'Planned posts combining promotional offers, educational carousels, reels, and stories.'],
-                ['icon' => 'ri-image-line', 'title' => 'Branded Graphic & Video Assets', 'text' => 'High-quality post graphics, short video reels, and engaging captions.'],
-                ['icon' => 'ri-line-chart-line', 'title' => 'Growth & Community Engagement', 'text' => 'Proactive follower outreach, comment management, and monthly performance reports.'],
-            ],
-            'work' => [
-                ['label' => 'Instagram', 'name' => 'Restaurant Brand Channel', 'text' => 'Grew active Instagram followers from 1.2k to 14.5k in 6 months.'],
-                ['label' => 'LinkedIn', 'name' => 'B2B Founder Personal Brand', 'text' => 'Positioned CEO as industry thought leader driving inbound deals.'],
-                ['label' => 'TikTok', 'name' => 'Viral Product Video Campaign', 'text' => 'Short video strategy generating 500k+ organic views.'],
-            ],
-        ],
-        'content-strategy' => [
-            'category' => 'marketing',
-            'title' => 'Content Strategy',
-            'headline' => 'Authority-Building Content Strategy That Converts Readers Into Clients',
-            'intro' => 'We create content roadmaps, SEO blog articles, whitepapers, case studies, and lead magnets that establish industry leadership.',
-            'features' => [
-                ['icon' => 'ri-article-line', 'title' => 'Keyword Content Mapping', 'text' => 'Map top-of-funnel educational topics to bottom-of-funnel decision content.'],
-                ['icon' => 'ri-edit-line', 'title' => 'Professional Copywriting', 'text' => 'Well-researched, engaging articles written by experienced technical and business writers.'],
-                ['icon' => 'ri-book-open-line', 'title' => 'Lead Magnets & eBooks', 'text' => 'Downloadable guides and checklists designed to capture email leads.'],
-            ],
-            'work' => [
-                ['label' => 'Blog', 'name' => 'SaaS Educational Knowledge Hub', 'text' => 'Published 24 long-form guides driving 15k monthly readers.'],
-                ['label' => 'Case Study', 'name' => 'Enterprise Customer Success Stories', 'text' => 'Written case study library used by sales team to close enterprise deals.'],
-                ['label' => 'Guide', 'name' => 'Industry Trends PDF Report', 'text' => 'Gated report capturing 800+ executive email downloads.'],
-            ],
-        ],
-        'email-marketing-automation' => [
-            'category' => 'marketing',
-            'title' => 'Email Marketing & Automation',
-            'headline' => 'Automated Email Campaigns That Nurture Leads & Repeat Sales',
-            'intro' => 'We design email templates and build automated drip sequences in Mailchimp, Klaviyo, ActiveCampaign, or Brevo.',
-            'features' => [
-                ['icon' => 'ri-mail-send-line', 'title' => 'Automated Drip Sequences', 'text' => 'Instant welcome series, lead lead-nurture flows, and post-purchase follow-ups.'],
-                ['icon' => 'ri-layout-row-line', 'title' => 'Branded Email Layouts', 'text' => 'Responsive, mobile-friendly HTML email templates for newsletters and promotions.'],
-                ['icon' => 'ri-bar-chart-grouped-line', 'title' => 'A/B Testing & Audience Segmentation', 'text' => 'Segment lists by purchase history, location, and engagement for maximum open rates.'],
-            ],
-            'work' => [
-                ['label' => 'Klaviyo', 'name' => 'E-Commerce Abandoned Cart Sequence', 'text' => '3-email flow recovering $18k in monthly lost revenue.'],
-                ['label' => 'Nurture', 'name' => 'B2B Lead Nurturing Campaign', 'text' => '6-week automated email sequence warming cold web leads.'],
-                ['label' => 'Newsletter', 'name' => 'Weekly Industry Insights Letter', 'text' => 'Maintained 42% average open rate across 20k subscribers.'],
-            ],
-        ],
     ],
 ];

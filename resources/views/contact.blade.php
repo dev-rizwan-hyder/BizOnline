@@ -31,9 +31,16 @@
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid gap-12 lg:grid-cols-2 items-center">
             <div class="space-y-6">
-                <p class="inline-flex items-center px-4 py-2 rounded-full border border-orange-300/30 bg-orange-500/10 text-[11px] font-semibold tracking-[0.18em] uppercase text-orange-200">Contact Biz Online</p>
-                <h1 class="text-4xl md:text-5xl font-bold text-white max-w-3xl">Let's Talk About Your Next Digital Project</h1>
-                <p class="max-w-2xl text-blue-100/80 text-lg leading-relaxed">Send us your project details and we will help you choose the right plan for branding, websites, apps, software, marketing, or support.</p>
+                <p class="inline-flex items-center px-4 py-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-md text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan-200">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                    Get In Touch
+                </p>
+                <h1 class="text-5xl sm:text-6xl lg:text-6xl font-black text-white leading-[1.1]">
+                    Contact Biz Tech Solution: Free Consultation & Project Inquiry
+                </h1>
+                <p class="max-w-2xl text-blue-100/85 text-lg sm:text-xl leading-relaxed font-light">
+                    Connect with our digital solutions team to discuss your next web project, software development, or business transformation initiative. We provide strategic guidance and transparent pricing for all service types.
+                </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#contact-form" class="bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 text-white px-6 py-3 rounded-full whitespace-nowrap font-semibold inline-flex items-center gap-2 shadow-[0_0_20px_rgba(145,92,255,0.45)] hover:scale-105 transition-all duration-300">Send Message <i class="ri-arrow-right-line"></i></a>
                     <a href="{{ route('work') }}" class="bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500 text-white px-6 py-3 rounded-full whitespace-nowrap font-semibold inline-flex items-center gap-2 shadow-[0_0_20px_rgba(145,92,255,0.45)] hover:scale-105 transition-all duration-300">View Our Work</a>
@@ -43,9 +50,9 @@
                 <div class="relative h-96 bg-cover bg-center" style="background-image: url('{{ asset('contact_us.png') }}');">
                     <div class="absolute inset-0 bg-black/30 backdrop-blur-sm"></div>
                     <div class="absolute left-6 bottom-6 right-6 rounded-3xl bg-white/10 border border-white/10 p-6">
-                        <p class="text-sm uppercase tracking-[0.24em] text-orange-200">Fast response</p>
-                        <h2 class="mt-3 text-3xl font-semibold text-white">Tell us what you need and we'll shape the next step.</h2>
-                        <p class="mt-3 text-blue-100/80 text-sm">From quick design tasks to full digital systems, our team can help you scope the right solution.</p>
+                        <p class="text-sm uppercase tracking-[0.24em] text-cyan-200">Strategic Guidance</p>
+                        <h2 class="mt-3 text-3xl font-bold text-white leading-tight">Expert Digital Solutions Tailored to Your Business Needs</h2>
+                        <p class="mt-3 text-blue-100/80 text-sm">From quick design tasks to complete enterprise systems, our team helps you scope and execute the perfect solution.</p>
                     </div>
                 </div>
             </div>
@@ -56,6 +63,10 @@
 <section class="relative py-20 bg-[#0b1234]">
     <div class="absolute inset-x-0 top-0 h-36 bg-[radial-gradient(circle_at_top,_rgba(255,146,77,0.16),transparent_50%)]"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-2">Direct Contact Information</h2>
+            <p class="text-blue-100/80 text-sm sm:text-base max-w-2xl mx-auto">Reach out through phone, email, or visit our office location</p>
+        </div>
         <div class="grid gap-6 md:grid-cols-3">
             @foreach($contactCards as $card)
                 <article class="rounded-[2rem] border border-white/10 bg-[#111739]/95 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:-translate-y-2">
@@ -79,9 +90,12 @@
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-start">
             <div class="space-y-6">
-                <p class="inline-flex items-center px-4 py-1.5 rounded-full border border-orange-300/20 bg-orange-500/10 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-200">Project Inquiry</p>
-                <h2 class="text-4xl md:text-5xl font-bold text-white">Ready To Start?</h2>
-                <p class="text-blue-100/80 text-lg leading-relaxed">Use the form to share your goals, preferred service, and project details. We will review it and get back with a clear recommendation.</p>
+                <p class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-md text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-200">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                    Project Inquiry Form
+                </p>
+                <h2 class="text-4xl sm:text-5xl lg:text-5xl font-bold text-white">Share Your Project Details & Goals</h2>
+                <p class="text-blue-100/85 text-lg leading-relaxed">Complete our brief inquiry form with your project scope, preferred services, and timeline. Our team will review and respond within 24 hours with a strategic recommendation and proposal.</p>
 
                 <div class="grid gap-4 sm:grid-cols-2">
                     @foreach($services as $service)
@@ -158,8 +172,12 @@
 <section class="py-20 bg-[#0b1234]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-            <p class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/25 bg-cyan-500/10 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100 mb-4">Next Steps</p>
-            <h2 class="text-4xl md:text-5xl font-bold text-white">What Happens After You Send It</h2>
+            <p class="inline-flex items-center px-4 py-1.5 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-md text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-200 mb-5">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                Our Process
+            </p>
+            <h2 class="text-4xl sm:text-5xl lg:text-5xl font-bold text-white mb-3">Your Project Timeline: From Inquiry to Launch</h2>
+            <p class="text-blue-100/85 text-lg max-w-3xl mx-auto">See how we guide your project from initial consultation through delivery, keeping you informed at every step.</p>
         </div>
         <div class="grid gap-6 md:grid-cols-3">
             @foreach($steps as $step)

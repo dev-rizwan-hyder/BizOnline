@@ -254,10 +254,64 @@
             </div>
         </div>
 
-        <!-- TAB 4: PACKAGES & PRICING -->
+        <!-- TAB 4: CORE FEATURES SECTION -->
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
             <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
-                <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-bold">4</div>
+                <div class="w-9 h-9 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 font-bold">4</div>
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Core Features Section</h2>
+                    <p class="text-xs text-slate-500">Edit the "Key Capabilities" features displayed on the service page.</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <p class="text-xs text-slate-600 font-medium">Add or edit features that appear in the "Core Features Included" section.</p>
+                
+                <div id="features-container" class="space-y-3">
+                    @php
+                        $features = $service->features ?? [
+                            ['icon' => 'ri-zap-line', 'title' => 'High Performance', 'text' => 'Lightning-fast load times and responsive interactions optimized for conversions.'],
+                            ['icon' => 'ri-shield-check-line', 'title' => 'Secure & Reliable', 'text' => 'Enterprise-grade security with 99.9% uptime guarantee and automatic backups.'],
+                            ['icon' => 'ri-customize-line', 'title' => 'Fully Customizable', 'text' => 'Tailored solutions built to match your brand identity and business goals.'],
+                        ];
+                    @endphp
+                    
+                    @foreach($features as $index => $feature)
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3" data-feature-index="{{ $index }}">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-slate-600 uppercase">Feature {{ $index + 1 }}</span>
+                                <button type="button" class="remove-feature text-xs px-2 py-1 text-rose-600 hover:bg-rose-50 rounded transition-colors">Remove</button>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Icon Class (Remixicon)</label>
+                                    <input type="text" name="features[{{ $index }}][icon]" value="{{ $feature['icon'] }}" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-800" placeholder="ri-zap-line" />
+                                    <p class="text-[10px] text-slate-400 mt-1">e.g. ri-zap-line, ri-shield-check-line, ri-customize-line</p>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Feature Title</label>
+                                    <input type="text" name="features[{{ $index }}][title]" value="{{ $feature['title'] }}" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-slate-800" required />
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Feature Description</label>
+                                <textarea name="features[{{ $index }}][text]" rows="2" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-700" required>{{ $feature['text'] }}</textarea>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <button type="button" id="add-feature" class="w-full mt-4 px-4 py-2 rounded-lg border-2 border-dashed border-slate-300 text-slate-600 hover:border-slate-400 hover:text-slate-800 text-xs font-bold uppercase transition-colors">+ Add Feature</button>
+            </div>
+        </div>
+
+        <!-- TAB 5: PACKAGES & PRICING -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <div class="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-bold">5</div>
                 <div>
                     <h2 class="text-xl font-bold text-slate-900">Packages & Pricing Cards</h2>
                     <p class="text-xs text-slate-500">Edit package names, prices, tags, feature checklists, and card banner images.</p>
@@ -329,4 +383,58 @@
         </div>
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addFeatureBtn = document.getElementById('add-feature');
+    const featuresContainer = document.getElementById('features-container');
+    let featureCount = {{ count($service->features ?? []) }};
+
+    addFeatureBtn?.addEventListener('click', function(e) {
+        e.preventDefault();
+        const newFeature = document.createElement('div');
+        newFeature.className = 'bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-3';
+        newFeature.setAttribute('data-feature-index', featureCount);
+        newFeature.innerHTML = `
+            <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-600 uppercase">Feature ${featureCount + 1}</span>
+                <button type="button" class="remove-feature text-xs px-2 py-1 text-rose-600 hover:bg-rose-50 rounded transition-colors">Remove</button>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Icon Class (Remixicon)</label>
+                    <input type="text" name="features[${featureCount}][icon]" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-800" placeholder="ri-zap-line" />
+                    <p class="text-[10px] text-slate-400 mt-1">e.g. ri-zap-line, ri-shield-check-line, ri-customize-line</p>
+                </div>
+                
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Feature Title</label>
+                    <input type="text" name="features[${featureCount}][title]" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs font-bold text-slate-800" required />
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Feature Description</label>
+                <textarea name="features[${featureCount}][text]" rows="2" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-700" required></textarea>
+            </div>
+        `;
+        
+        featuresContainer.appendChild(newFeature);
+        featureCount++;
+        attachRemoveListeners();
+    });
+
+    function attachRemoveListeners() {
+        document.querySelectorAll('.remove-feature').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.closest('[data-feature-index]').remove();
+            });
+        });
+    }
+
+    attachRemoveListeners();
+});
+</script>
 @endsection

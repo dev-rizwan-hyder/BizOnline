@@ -253,6 +253,77 @@
       @keyframes loaderSpin {
         to { transform: rotate(360deg); }
       }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes shimmer {
+        0% {
+          background-position: -1000px 0;
+        }
+        100% {
+          background-position: 1000px 0;
+        }
+      }
+      .animate-slide-up {
+        animation: slideUp 0.7s ease-out forwards;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+      .animate-slide-in-left {
+        animation: slideInLeft 0.6s ease-out forwards;
+      }
+      .animate-slide-in-right {
+        animation: slideInRight 0.6s ease-out forwards;
+      }
+      .animate-scale-in {
+        animation: scaleIn 0.5s ease-out forwards;
+      }
     </style>
   </head>
   <body class="site-theme bg-white">
@@ -329,7 +400,7 @@
       </div>
     </div>
 
-    <script id="service-navigation">
+    <script id="service-navigation" defer>
       document.addEventListener('DOMContentLoaded', function() {
         const serviceCards = document.querySelectorAll('.service-card');
         const serviceDetails = document.querySelectorAll('.service-detail');
@@ -351,7 +422,7 @@
         });
       });
     </script>
-    <script id="portfolio-carousel-script">
+    <script id="portfolio-carousel-script" defer>
       document.addEventListener('DOMContentLoaded', function() {
         const track = document.getElementById('portfolio-carousel-track');
         const slides = document.querySelectorAll('.portfolio-slide');
@@ -406,7 +477,7 @@
         start();
       });
     </script>
-    <script id="smooth-scroll">
+    <script id="smooth-scroll" defer>
       document.addEventListener('DOMContentLoaded', function() {
         const navLinks = document.querySelectorAll('a[href^="#"]');
         navLinks.forEach(link => {
@@ -424,7 +495,7 @@
         });
       });
     </script>
-    <script id="support-widget-script">
+    <script id="support-widget-script" defer>
       document.addEventListener('DOMContentLoaded', function() {
         const panel = document.getElementById('support-panel');
         const toggle = document.getElementById('support-toggle');
@@ -462,14 +533,15 @@
           const preloader = document.getElementById('site-preloader');
           if (!preloader) return;
           preloader.classList.add('hidden');
-          setTimeout(() => preloader.remove(), 650);
+          setTimeout(() => preloader.remove(), 300);
         };
 
         window.addEventListener('load', hideLoader);
-        setTimeout(hideLoader, 7000);
+        // Reduced from 7000ms to 2000ms for faster experience
+        setTimeout(hideLoader, 2000);
       })();
     </script>
-    <script id="form-loader-script">
+    <script id="form-loader-script" defer>
       document.addEventListener('DOMContentLoaded', function() {
         const forms = document.querySelectorAll('form');
         forms.forEach(form => {

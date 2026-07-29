@@ -6,16 +6,20 @@
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header -->
         <div class="text-center mb-16">
-            <p class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-300/35 bg-[#0e235f]/75 text-[11px] font-semibold tracking-[0.18em] uppercase text-cyan-100 mb-5">
-                <span class="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(85,214,255,0.9)]"></span>
-                Insightful Articles
+            <p class="inline-flex items-center px-4 py-2 rounded-full border border-cyan-300/40 bg-gradient-to-r from-cyan-500/10 to-indigo-500/10 backdrop-blur-md text-[11px] font-semibold tracking-[0.2em] uppercase text-cyan-200 mb-6">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse mr-2"></span>
+                Digital Insights & Resources
             </p>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-500 to-fuchsia-500">Blog</span></h1>
-            <p class="text-blue-100/90 text-lg max-w-3xl mx-auto">Explore latest trends, tutorials, and business growth strategies curated by our experts.</p>
-            <div class="mt-5 flex items-center justify-center gap-3">
-                <span class="w-20 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent"></span>
-                <span class="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_10px_rgba(85,214,255,0.9)]"></span>
-                <span class="w-20 h-px bg-gradient-to-r from-transparent via-indigo-300/70 to-transparent"></span>
+            <h1 class="text-5xl sm:text-6xl lg:text-6xl font-black text-white mb-5 leading-[1.1]">
+                Blog: Web Development, Software & Digital Strategy Insights
+            </h1>
+            <p class="text-blue-100/85 text-lg sm:text-xl max-w-4xl mx-auto leading-relaxed font-light">
+                Expert articles on web design, software development, digital marketing, and technology trends to help your business stay ahead.
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-4">
+                <span class="w-16 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent"></span>
+                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-300 to-indigo-300 shadow-[0_0_12px_rgba(56,189,248,0.8)]"></span>
+                <span class="w-16 h-px bg-gradient-to-r from-transparent via-indigo-300/70 to-transparent"></span>
             </div>
         </div>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -127,5 +128,34 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect()->route('admin.tasks.index')->with('success', 'Task deleted successfully.');
+    }
+
+    public function storeComment(Request $request, Task $task)
+    {
+        $validated = $request->validate([
+            'content' => 'required|string|max:5000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+        ]);
+
+        $commentData = [
+            'user_id' => Auth::id(),
+            'content' => $validated['content'],
+        ];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            
+            // Store file directly in public/comments directory
+            $file->move(public_path('comments'), $filename);
+            
+            $commentData['image_path'] = 'comments/' . $filename;
+            $commentData['image_filename'] = $file->getClientOriginalName();
+        }
+
+        $task->comments()->create($commentData);
+
+        return redirect()->back()->with('success', 'Comment posted successfully.');
     }
 }

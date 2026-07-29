@@ -12,6 +12,8 @@ class Comment extends Model
         'task_id',
         'user_id',
         'content',
+        'image_path',
+        'image_filename',
     ];
 
     public function task()

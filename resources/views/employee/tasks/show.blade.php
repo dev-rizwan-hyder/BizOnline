@@ -153,6 +153,11 @@
                         <span class="text-xs text-slate-400">{{ $comment->created_at->diffForHumans() }}</span>
                     </div>
                     <p class="text-slate-600 text-sm whitespace-pre-wrap leading-relaxed">{{ $comment->content }}</p>
+                    @if($comment->image_path)
+                        <div class="mt-3">
+                            <img src="/comments/{{ basename($comment->image_path) }}" alt="{{ $comment->image_filename }}" class="max-w-xs rounded-lg shadow-md border border-slate-200 hover:shadow-lg transition-shadow cursor-pointer" data-image="/comments/{{ basename($comment->image_path) }}">
+                        </div>
+                    @endif
                 </div>
             </div>
         @empty
@@ -164,12 +169,31 @@
     </div>
 
     <!-- Post Comment Form -->
-    <form action="{{ route('employee.tasks.comments.store', $task) }}" method="POST" class="mt-6 border-t border-slate-100 pt-6">
+    <form action="{{ route('employee.tasks.comments.store', $task) }}" method="POST" enctype="multipart/form-data" class="mt-6 border-t border-slate-100 pt-6">
         @csrf
         <div class="flex gap-4 items-start">
             <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4f46e5&color=fff&size=36" class="w-9 h-9 rounded-full" alt="Avatar">
             <div class="flex-1">
                 <textarea name="content" rows="3" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm text-slate-700 shadow-sm placeholder-slate-400 resize-none transition-all" placeholder="Write a comment, report progress..."></textarea>
+                
+                <!-- Image Upload Section -->
+                <div class="mt-3 pb-3 border-b border-slate-200">
+                    <label class="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-slate-300 rounded-lg hover:border-indigo-400 hover:bg-indigo-50/30 cursor-pointer transition-colors group">
+                        <div class="text-center">
+                            <i class="ri-image-add-line text-slate-400 group-hover:text-indigo-600 text-lg mb-1 block"></i>
+                            <span class="text-xs font-medium text-slate-600 group-hover:text-indigo-600">Attach Image (Optional)</span>
+                            <span class="text-[10px] text-slate-400 block">JPEG, PNG, GIF, WebP • Max 5MB</span>
+                        </div>
+                        <input type="file" name="image" id="image-input-emp" accept="image/jpeg,image/png,image/gif,image/webp" class="hidden" data-form="emp">
+                    </label>
+                    <div id="image-preview-emp" class="mt-3 hidden">
+                        <div class="relative inline-block">
+                            <img id="preview-img-emp" src="" alt="Preview" class="max-w-xs rounded-lg shadow-md border border-slate-200">
+                            <button type="button" class="remove-image-btn absolute top-2 right-2 px-2 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded transition-colors" data-form="emp">✕ Remove</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="flex justify-between items-center mt-3">
                     <span class="text-xs text-slate-400">Remember to be clear and concise.</span>
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-colors shadow-sm shadow-indigo-100">
@@ -179,5 +203,39 @@
             </div>
         </div>
     </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Employee form image preview
+            const empFileInput = document.getElementById('image-input-emp');
+            const empImagePreview = document.getElementById('image-preview-emp');
+            const empPreviewImg = document.getElementById('preview-img-emp');
+            const empRemoveBtns = document.querySelectorAll('.remove-image-btn[data-form="emp"]');
+
+            if (empFileInput) {
+                empFileInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            empPreviewImg.src = event.target.result;
+                            empImagePreview.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        empImagePreview.classList.add('hidden');
+                    }
+                });
+
+                empRemoveBtns.forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        empFileInput.value = '';
+                        empImagePreview.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
 </div>
 @endsection

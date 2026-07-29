@@ -63,12 +63,27 @@ class TaskController extends Controller
 
         $validated = $request->validate([
             'content' => 'required|string|max:5000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
         ]);
 
-        $task->comments()->create([
+        $commentData = [
             'user_id' => Auth::id(),
             'content' => $validated['content'],
-        ]);
+        ];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            
+            // Store file directly in public/comments directory
+            $file->move(public_path('comments'), $filename);
+            
+            $commentData['image_path'] = 'comments/' . $filename;
+            $commentData['image_filename'] = $file->getClientOriginalName();
+        }
+
+        $task->comments()->create($commentData);
 
         return redirect()->back()->with('success', 'Comment posted successfully.');
     }
